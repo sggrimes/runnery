@@ -8,6 +8,7 @@
  <%= render 'layouts/shim' %>
 	</head>
 	<body>
+		<%= render 'layouts/header' %>
 		<div class="container">
 			<%= link_to image_tag("delivery.gif", alt: "Delivery"), root_path, id: "image" %>
 		</div>
@@ -18,6 +19,7 @@
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
 			<%= yield %>
+			<%= render 'layouts/footer' %>
 			<%= debug(params) if Rails.env.development? %>
 		</div>
 	</div>
