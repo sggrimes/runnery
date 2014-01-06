@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Runnery</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	<head>
+  		<title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+ <%= render 'layouts/shim' %>
+	</head>
+	<body>
+		<div class="container">
+			<%= link_to image_tag("delivery.gif", alt: "Delivery"), root_path, id: "image" %>
+		</div>
+	
+		<div class= "hero-unit">
+		<div class="container">
+			<% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+			<%= yield %>
+			<%= debug(params) if Rails.env.development? %>
+		</div>
+	</div>
+	</body>
 </html>
