@@ -1,6 +1,51 @@
 <h1>Editing user</h1>
 
-<%= render 'form' %>
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="container">
+
+  <div class="span offset">
+
+  	
+    <%= f.label :user_type %>
+    <%= f.select :user_type, [["Driver", true],["Restaurant", false]] %>
+<div class="span4">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone, placeholder: "8885551234" %>
+ 
+    <%= f.label :address %>
+    <%= f.text_area :address, placeholder: "Full restaurant address--not required for drivers." %>
+ 
+    <%= f.label :password %>
+    <%= f.password_field :password, placeholder: "6 char min" %>
+
+    <%= f.label :password_confirmation, "Confirm password" %>
+    <%= f.password_field :password_confirmation %>
+
+
+  </div>
+
+  
+    <%= f.submit "Change!", class: "btn-large btn-inverse" %>
+	
+
+</div>
+
+<% end %>
+
+</div>
+
+

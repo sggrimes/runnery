@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140106223041) do
+ActiveRecord::Schema.define(version: 20140107220133) do
 
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "phone"
     t.string   "address"
-    t.string   "email"
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "created_at"
@@ -25,7 +24,5 @@ ActiveRecord::Schema.define(version: 20140106223041) do
     t.string   "password_digest"
     t.boolean  "user_type"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email"
 
 end
