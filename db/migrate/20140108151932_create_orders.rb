@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
       t.string :address
       t.string :phone
-      t.decimal :surcharge, :scale => 2
+      t.decimal :surcharge
       t.integer :user_id
       t.boolean :pay_type
       t.boolean :taken
