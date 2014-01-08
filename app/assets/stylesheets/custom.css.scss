@@ -1,6 +1,6 @@
 @import "bootstrap";
 
-@import "bootstrap";
+
 
 /* mixins, variables, etc. */
 
@@ -30,6 +30,26 @@ textarea{
 	resize: vertical;
 }
 
+th {
+	
+	padding-right: 50px;
+
+	.address {
+
+		width: 200px;
+	}
+}
+
+td {
+	
+	padding-right: 50px;
+
+	.address {
+
+		width: 200px;
+	}
+}
+
 * {
 	font-style: italic;
 	font-family: "Courier New"
@@ -46,6 +66,13 @@ h1, h2, h3, h4, h5, h6 {
 	float: left;
 	padding-top: 15px;
 	padding-bottom: 10px;
+	padding-right: 25px;
+}
+
+h1 {
+	
+	padding-top: 85px;
+
 }
 
 h2 {
@@ -59,6 +86,7 @@ h2 {
 
 div{
 
+
 .span {
 
 	width: 130px;
@@ -66,7 +94,7 @@ div{
 }
 
 .span4 {
-	margin-bottom: 35px;
+	margin-bottom: 10px;
 	}
 }
 
@@ -91,6 +119,7 @@ li {
 
 
 /* header */
+
 
 #logo {
 	float: left;

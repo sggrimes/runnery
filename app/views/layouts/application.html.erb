@@ -11,7 +11,16 @@
 		<%= render 'layouts/header' %>
 		<div class="container">
 			<%= link_to image_tag("delivery.gif", alt: "Delivery"), root_path, id: "image" %>
+
+		 <% if !signed_in? %>	
+			<h1>Welcome!!!</h1>
+			<% else %>
+			<h1>Hey!!!</h1>
+			<% end %>
+			
 		</div>
+
+
 	
 		<div class= "hero-unit">
 			

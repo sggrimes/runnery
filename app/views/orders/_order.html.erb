@@ -1,0 +1,21 @@
+<li>
+  <span class="content">
+
+  	<%= order.address %><br>
+
+  	<%= order.phone %><br>
+
+  	<%= order.surcharge %><br>
+
+  	<%= order.pay_type ? 'Cash up-front' : 'Paid with card' %><br>
+
+  </span>
+  <span class="timestamp">
+    <%= time_ago_in_words(order.created_at) %> ago.
+  </span>
+  <% if current_user?(order.user) %>
+    <%= link_to "delete", order, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: order.user_id %>
+  <% end %>
+</li>

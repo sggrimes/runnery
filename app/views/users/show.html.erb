@@ -1,4 +1,14 @@
-
+<div class="container">
+<div class="span8">
+    <% if @user.orders.any? %>
+      <h3>Orders (<%= @user.orders.count %>)</h3>
+      <ol class="Orders">
+        <%= render @orders %>
+      </ol>
+      <%= will_paginate @orders %>
+    <% end %>
+  </div>
+</div>
 
 <p>
   <strong>Name:</strong>

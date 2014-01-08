@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :orders, dependent: :destroy
 	validates :name, presence: true, length: { maximum: 50 }
 	before_create :create_remember_token
 	VALID_PHONE_REGEX = /(\d{10})/
@@ -8,6 +9,10 @@ class User < ActiveRecord::Base
 	validates :password, length: { minimum:6 }
 
 
+def feed
+    # This is preliminary. See "Following users" for the full implementation.
+    Order.where("user_id = ?", id)
+  end
 
  def User.new_remember_token
     SecureRandom.urlsafe_base64
