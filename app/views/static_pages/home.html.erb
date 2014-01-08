@@ -4,7 +4,27 @@
 			Welcome to Runnery!
 		</h2>
 
-		<%= link_to "Register!", signup_path, class: "btn-large btn-inverse" %>
+
+	<div class="row">
+  		<div class="span4 offset">
+    	<%= form_for(:session, url: sessions_path) do |f| %>
+
+      	<%= f.label :phone %>
+      	<%= f.text_field :phone, placeholder: "8885551234" %>
+
+      	<%= f.label :password %>
+      	<%= f.password_field :password %>
+
+      	<%= f.submit "Sign in!", class: "btn btn-large btn-inverse" %>
+   		<% end %>
+
+  		</div>
+	</div>
+
+  
+  
+
+		<%= link_to "Register!", signup_path, class: "btn" %>
 
 			
 
