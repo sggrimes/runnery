@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108212407) do
+ActiveRecord::Schema.define(version: 20140108220345) do
 
   create_table "orders", force: true do |t|
     t.string   "address"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140108212407) do
     t.boolean  "redeemed"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "surcharge"
+    t.decimal  "surcharge"
   end
 
   add_index "orders", ["user_id", "created_at"], name: "index_orders_on_user_id_and_created_at"
