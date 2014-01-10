@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def feed
-     Order.from_users_done_by(self)
+     Order.from_users_running_by(self)
   end
 
   def User.new_remember_token
