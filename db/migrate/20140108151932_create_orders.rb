@@ -6,10 +6,6 @@ class CreateOrders < ActiveRecord::Migration
       t.decimal :surcharge
       t.integer :user_id
       t.boolean :pay_type
-      t.boolean :taken
-      t.boolean :receipt
-      t.boolean :done
-      t.boolean :redeemed
 
       t.timestamps
     end
