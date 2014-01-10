@@ -11,19 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108223803) do
+ActiveRecord::Schema.define(version: 20140110115221) do
 
   create_table "orders", force: true do |t|
     t.string   "address"
     t.string   "phone"
     t.integer  "user_id"
     t.boolean  "pay_type"
-    t.boolean  "taken"
-    t.boolean  "receipt"
-    t.boolean  "done"
-    t.boolean  "redeemed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "surcharge"
   end
 
   add_index "orders", ["user_id", "created_at"], name: "index_orders_on_user_id_and_created_at"

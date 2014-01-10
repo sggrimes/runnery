@@ -3,7 +3,8 @@
     <%= link_to feed_item.user.address, feed_item.user %>
   </span><br>
   <span class="content"><%= feed_item.address %></span>
-  <span class="timestamp"><br>
+
+  <span class="timestamp">
     <%= time_ago_in_words(feed_item.created_at) %> ago.
   </span>
   <% if current_user?(feed_item.user) %>

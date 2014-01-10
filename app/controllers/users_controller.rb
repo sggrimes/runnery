@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @orders = @user.orders.paginate(page: params[:page])
+    @orders = @user.orders.paginate(page: params[:page], :per_page => 10)
+    
   end
 
   # GET /users/new

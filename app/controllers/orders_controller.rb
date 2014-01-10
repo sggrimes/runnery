@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   before_action :correct_user,   only: :destroy
 
 
+
   # GET /orders
   # GET /orders.json
   def index
@@ -12,7 +13,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/1
   # GET /orders/1.json
-  def show
+  def show 
+
   end
 
   # GET /orders/new
@@ -52,7 +54,7 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
-      if @order.update(order_params)
+     if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { head :no_content }
       else
@@ -72,6 +74,7 @@ class OrdersController < ApplicationController
       #format.json { head :no_content }
     #end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

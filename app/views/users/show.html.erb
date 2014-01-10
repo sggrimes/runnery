@@ -25,5 +25,11 @@
   <%= @user.address %>
 </p>
 
+<p>
+  <strong>Type:</strong>
+  <%= @user.user_type ? 'Driver' : 'Restaurant' %>
+</p>
+
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
