@@ -9,9 +9,9 @@ class Order < ActiveRecord::Base
 	validates :surcharge, presence: true
 
  def self.from_users_done_by(user)
-    done_user_ids = "SELECT done_id FROM deliveries
+    done_ids = "SELECT done_id FROM deliveries
                          WHERE running_id = :user_id"
-    where("user_id IN (#{done_user_ids}) OR user_id = :user_id",
+    where("user_id IN (#{done_ids}) OR user_id = :user_id",
           user_id: user.id)
   end
 end
