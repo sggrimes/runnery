@@ -1,7 +1,16 @@
 Runnery::Application.routes.draw do
- resources :users
+
+ resources :users do
+    member do
+      get :running, :done
+    end
+  end
+  
  resources :sessions, only: [:new, :create, :destroy]
  resources :orders, only: [:create, :destroy]
+ resources :deliveries, only: [:create, :destroy]
+
+ 
 
  root 'static_pages#home'
  match '/signup',  to: 'users#new',  via: 'get'

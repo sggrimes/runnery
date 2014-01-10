@@ -10,9 +10,10 @@
   	<%= order.pay_type ? 'Cash up-front' : 'Paid with card' %><br>
 
   </span>
-  <span class="timestamp">
+  <div class="timestamp">
     <%= time_ago_in_words(order.created_at) %> ago.
-  </span>
+  </div>
+  <%= render 'run_form' if signed_in? %>
   <% if current_user?(order.user) %>
     <%= link_to "delete", order, method: :delete,
                                      data: { confirm: "You sure?" },

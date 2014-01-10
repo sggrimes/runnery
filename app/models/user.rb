@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
+  has_many :deliveries, foreign_key: "running_id", dependent: :destroy
+  has_many :done, through: :deliveries, source: :done                                   
+  has_many :running, through: :deliveries, source: :running
+
 	validates :name, presence: true, length: { maximum: 50 }
 	before_create :create_remember_token
 	VALID_PHONE_REGEX = /(\d{10})/
@@ -8,13 +12,23 @@ class User < ActiveRecord::Base
 	has_secure_password
 	validates :password, length: { minimum:6 }
 
-
-def feed
-    # This is preliminary. See "Following users" for the full implementation.
-    Order.where("user_id = ?", id)
+  def running?(other_user)
+    deliveries.find_by(running_id: other_user.id)
   end
 
- def User.new_remember_token
+  def run!(other_user)
+    deliveries.create!(running_id: other_user.id)
+  end
+
+  def stop_run!(other_user)
+    deliveries.find_by(running_id: other_user.id).destroy!
+  end
+
+  def feed
+     Order.from_users_done_by(self)
+  end
+
+  def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
 

@@ -1,0 +1,4 @@
+<%= form_for(current_user.deliveries.find_by(running_id: @user),
+             html: { method: :delete }) do |f| %>
+  <%= f.submit "Stop Run!", class: "btn-small btn-danger" %>
+<% end %>

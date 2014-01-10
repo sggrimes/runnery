@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   #before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy,:running, :done]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
 
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by(params[:id])
     @orders = @user.orders.paginate(page: params[:page], :per_page => 10)
     
   end
@@ -65,6 +65,20 @@ class UsersController < ApplicationController
     #respond_to do |format|
       #format.json { head :no_content }
     #end
+  end
+
+  def running
+    @title = "Running"
+    @user = User.find(params[:id])
+    @users = @user.running.paginate(page: params[:page])
+    render 'show_run'
+  end
+
+  def done
+    @title = "Done"
+    @user = User.find(params[:id])
+    @users = @user.done.paginate(page: params[:page])
+    render 'show_run'
   end
 
   private
