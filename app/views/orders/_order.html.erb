@@ -9,8 +9,6 @@
 
   	<%= order.pay_type ? 'Cash up-front' : 'Paid with card' %><br>
 
-    <%= order.taken ? 'Running' : 'Waiting' %><br>
-
   </span>
   <span class="timestamp">
     <%= time_ago_in_words(order.created_at) %> ago.
