@@ -1,20 +1,28 @@
-<% if signed_in? %>
-  <div class="container">
-     <div class="span6 pull-right">
-      <h3>Order Feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section>
-        <%= render 'shared/order_form' %>
-      </section>
-    </aside>
-  </div>
-<% else %>
 <% provide(:title, 'Home') %>
+<div class="container">
+<% if signed_in? %>
+      <h3>Orders:</h3>
+        <%= render 'shared/stats' %>
+      <br>
+      <% if !driver? %>
+      <div class="span4">
+      <%= render 'shared/order_form'%>
+    </div>
+    <% end %>
+    <% if driver? %>
+     <section class="span6 pull-left">
+      <h3>Waiting</h3>
+      <%= render 'shared/feed' %>
+    </section>
+    <% else %>
+    <row class="span6 pull-right">
+      <h3>Waiting</h3>
+      <%= render 'shared/feed' %>
+    </row>
+    <% end %>
+    </div>
+<% else %>
+
 
 
 	<div class="container">

@@ -15,7 +15,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @orders = @user.orders.paginate(page: params[:page], :per_page => 10)
-    
+    if !driver?
+    @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 10)
+  else
+    @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 10)
+  end
   end
 
   # GET /users/new
@@ -35,7 +39,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to Runnery!"
-      redirect_to @user
+      redirect_to root_url
     else
       render 'new'
     end
@@ -67,18 +71,8 @@ class UsersController < ApplicationController
     #end
   end
 
-  def running
-    @title = "Running"
+  def feed
     @user = User.find(params[:id])
-    @users = @user.running.paginate(page: params[:page])
-    render 'show_run'
-  end
-
-  def done
-    @title = "Done"
-    @user = User.find(params[:id])
-    @users = @user.done.paginate(page: params[:page])
-    render 'show_run'
   end
 
   private

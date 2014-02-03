@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
-	belongs_to :user
-
+	belongs_to :users
+	
 	default_scope -> { order('created_at ASC') }
 	validates :user_id, presence: true
 	validates :address, presence: true
@@ -8,9 +8,10 @@ class Order < ActiveRecord::Base
 	validates :phone, presence: true, format: { with: VALID_PHONE_REGEX }
 	validates :surcharge, presence: true
 
- #def self.from_users_running_by(user)
-    #running_user_ids = user.running_user_ids
-    #where("user_id IN (:running_user_ids) OR user_id = :user_id",
-          #running_user_ids: running_user_ids, user_id: user)
-  #end
-end
+
+	#def self.rest_address(user)
+		#user_ids = "SELECT user_id FROM orders
+					#WHERE user_id = user.id"
+		#where("id IN #{address_ids}) OR id = :user_id", user_id: user.id)
+	#end
+	end

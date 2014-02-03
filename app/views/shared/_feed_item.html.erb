@@ -1,19 +1,31 @@
 <li id="<%= feed_item.id %>">
-  <span class="user">
-    <%= link_to feed_item.user.address, feed_item.user %>
-  </span><br>
+
+	<span class="content"><%= feed_item.user_id %></span><br>
+ 
   <span class="content"><%= feed_item.address %></span><br>
 
   <span class="timestamp">
     <%= time_ago_in_words(feed_item.created_at) %> ago.
   </span>
-  <% if current_user?(feed_item.user) %>
 
-    <%= link_to "delete", feed_item, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: feed_item.user_id  %>
+  <% if !driver? %>
+   
+     <%= button_to "Cancel!", feed_item, class: "btn-danger",method: :delete, data: { confirm: "Do you mean to cancel this order?" },title: feed_item.user_id  %>
+
+                                   <% else %>
+
+     <%= form_for feed_item do |f| %>
+     
+
+        <%= f.hidden_field :driver_id, :value => @user.id %>
+        <%= f.submit "Run!", class: "btn-small btn-success" %> 
+
+        <% end %>
+
+                                     <% end %>
+                                   
 
 
   
-  <% end %>
+  
 </li><br>

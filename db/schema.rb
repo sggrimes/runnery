@@ -11,20 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140110162732) do
-
-  create_table "deliveries", force: true do |t|
-    t.integer  "running_id"
-    t.integer  "done_id"
-    t.boolean  "receipt"
-    t.boolean  "redeemed"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "deliveries", ["done_id"], name: "index_deliveries_on_done_id"
-  add_index "deliveries", ["running_id", "done_id"], name: "index_deliveries_on_running_id_and_done_id", unique: true
-  add_index "deliveries", ["running_id"], name: "index_deliveries_on_running_id"
+ActiveRecord::Schema.define(version: 20140203163405) do
 
   create_table "orders", force: true do |t|
     t.string   "address"
@@ -34,6 +21,9 @@ ActiveRecord::Schema.define(version: 20140110162732) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "surcharge"
+    t.integer  "driver_id"
+    t.boolean  "receipt"
+    t.boolean  "redeemed"
   end
 
   add_index "orders", ["user_id", "created_at"], name: "index_orders_on_user_id_and_created_at"

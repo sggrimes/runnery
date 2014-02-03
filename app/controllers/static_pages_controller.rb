@@ -3,8 +3,11 @@ class StaticPagesController < ApplicationController
   def home
   	if signed_in?
       @order  = current_user.orders.build
-      @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 3)
-  	end
+      @feed_items = current_user.restaurant_wait.paginate(page: params[:page], :per_page => 3)
+      if driver?
+      @feed_items = current_user.driver_wait.paginate(page: params[:page], :per_page => 3)
+      end
+    end
   end
 
   def help
@@ -13,3 +16,5 @@ class StaticPagesController < ApplicationController
   def about
   end
 end
+
+

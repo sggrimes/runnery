@@ -1,8 +1,5 @@
 class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
-  has_many :deliveries, foreign_key: "running_id", dependent: :destroy
-  has_many :done, through: :deliveries, source: :done                                   
-  has_many :running, through: :deliveries, source: :running
 
 	validates :name, presence: true, length: { maximum: 50 }
 	before_create :create_remember_token
@@ -12,21 +9,44 @@ class User < ActiveRecord::Base
 	has_secure_password
 	validates :password, length: { minimum:6 }
 
-  def running?(other_user)
-    deliveries.find_by(running_id: other_user.id)
+  def restaurant_wait
+     
+     Order.where("user_id IS ?", id)
+     
   end
 
-  def run!(other_user)
-    deliveries.create!(running_id: other_user.id)
+  def restaurant_run
+
+    Order.where("user_id IS ?", id)
+    Order.where("driver_id IS ?", !nil)
+
   end
 
-  def stop_run!(other_user)
-    deliveries.find_by(running_id: other_user.id).destroy!
+  def restaurant_done
+
+     Order.where("user_id IS ?", id)
+     Order.where("driver_id IS ?", !nil)
+     Order.where("receipt IS ?", !nil)
+
   end
 
-  def feed
-     #Order.from_users_running_by(self)
-     Order.where("user_id = ?", id)
+
+  def driver_wait
+
+    Order.all.where("driver_id IS ?", nil)
+
+  end
+
+  def driver_run
+
+    Order.where("driver_id IS ?", id)
+
+  end
+
+  def driver_done
+
+    Order.where("driver_id IS ?", id)
+    Order.where("receipt IS ?", !nil)
   end
 
   def User.new_remember_token

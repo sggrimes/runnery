@@ -1,20 +1,16 @@
 <% provide(:title, @title) %>
-<div class="row">
+<div class="container">
   <aside class="span4">
-    <section>
-      <h1><%= @user.name %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-      <span><b>Orders:</b> <%= @user.orders.count %></span>
-    </section>
+      <h3>Orders:</h3>
     <section>
       <%= render 'shared/stats' %>
         </section>
   </aside>
   <div class="span8">
     <h3><%= @title %></h3>
-    <% if @users.any? %>
+    <% if current_user %>
       <ul class="users">
-        <%= render 'shared/stats' %>
+        <%= render 'shared/feed' %>
       </ul>
       <%= will_paginate %>
     <% end %>

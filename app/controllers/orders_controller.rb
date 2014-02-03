@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   #before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:create, :destroy]
+  before_action :signed_in_user, only: [:create, :destroy, :update]
   before_action :correct_user,   only: :destroy
 
 
@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
   def create
     @order = current_user.orders.build(order_params)
     if @order.save
-      flash[:success] = "Order Created!"
+      flash[:success] = "Order Live!"
       redirect_to root_url
     else
       @feed_items = []
@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
      if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.html { redirect_to root_url, notice: 'Order Running!' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -76,6 +76,7 @@ class OrdersController < ApplicationController
     #end
   end
 
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -85,7 +86,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:address, :phone, :surcharge, :user_id, :pay_type, :taken, :receipt, :done, :redeemed)
+      params.require(:order).permit(:address, :phone, :surcharge, :user_id, :pay_type, :driver_id, :receipt, :redeemed)
     end
 
     def correct_user

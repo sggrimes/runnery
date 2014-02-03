@@ -24,26 +24,3 @@
   <strong>Pay type:</strong>
   <%= @order.pay_type %>
 </p>
-
-<p>
-  <strong>Taken:</strong>
-  <%= @order.taken %>
-</p>
-
-<p>
-  <strong>Receipt:</strong>
-  <%= @order.receipt %>
-</p>
-
-<p>
-  <strong>Done:</strong>
-  <%= @order.done %>
-</p>
-
-<p>
-  <strong>Redeemed:</strong>
-  <%= @order.redeemed %>
-</p>
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
