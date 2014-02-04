@@ -1,9 +1,7 @@
 <% provide(:title, 'Home') %>
 <div class="container">
 <% if signed_in? %>
-      <h3>Orders:</h3>
-        <%= render 'shared/stats' %>
-      <br>
+     
       <% if !driver? %>
       <div class="span4">
       <%= render 'shared/order_form'%>
@@ -11,12 +9,12 @@
     <% end %>
     <% if driver? %>
      <section class="span6 pull-left">
-      <h3>Waiting</h3>
+      <h3>Waiting:</h3>
       <%= render 'shared/feed' %>
     </section>
     <% else %>
     <row class="span6 pull-right">
-      <h3>Waiting</h3>
+      <h3>Waiting:</h3>
       <%= render 'shared/feed' %>
     </row>
     <% end %>

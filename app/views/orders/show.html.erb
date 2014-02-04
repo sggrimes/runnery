@@ -1,26 +1,13 @@
-<p id="notice"><%= notice %></p>
+    <% provide(:title, 'Running') %>
+    
 
-<p>
-  <strong>Address:</strong>
-  <%= @order.address %>
-</p>
+   <div class="container">
 
-<p>
-  <strong>Phone:</strong>
-  <%= @order.phone %>
-</p>
+    <h3> Running: </h3>
 
-<p>
-  <strong>Surcharge:</strong>
-  <%= @order.surcharge %>
-</p>
+    <%= render 'shared/feed' %>
+    
 
-<p>
-  <strong>User:</strong>
-  <%= @order.user_id %>
-</p>
+  </div>
 
-<p>
-  <strong>Pay type:</strong>
-  <%= @order.pay_type %>
-</p>
+    

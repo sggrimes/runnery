@@ -9,44 +9,44 @@ class User < ActiveRecord::Base
 	has_secure_password
 	validates :password, length: { minimum:6 }
 
+
   def restaurant_wait
      
-     Order.where("user_id IS ?", id)
+     Order.where("driver_id IS NULL AND user_id IS ?", id)
      
   end
 
   def restaurant_run
 
-    Order.where("user_id IS ?", id)
-    Order.where("driver_id IS ?", !nil)
+    Order.where("receipt IS NULL AND driver_id IS NOT NULL 
+                  AND user_id IS ?", id)
+       
 
   end
 
   def restaurant_done
 
-     Order.where("user_id IS ?", id)
-     Order.where("driver_id IS ?", !nil)
-     Order.where("receipt IS ?", !nil)
-
+     Order.where("receipt IS NOT NULL AND driver_id IS NOT NULL 
+                  AND user_id IS ?", id)
+     
   end
 
 
   def driver_wait
 
-    Order.all.where("driver_id IS ?", nil)
+    Order.where("driver_id IS NULL")
 
   end
 
   def driver_run
-
-    Order.where("driver_id IS ?", id)
-
+    Order.where("receipt IS NULL AND driver_id IS ?", id)
+  
   end
 
   def driver_done
 
-    Order.where("driver_id IS ?", id)
-    Order.where("receipt IS ?", !nil)
+    Order.where("receipt IS NOT NULL AND driver_id IS ?", id)
+   
   end
 
   def User.new_remember_token

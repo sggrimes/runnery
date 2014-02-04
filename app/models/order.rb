@@ -8,6 +8,13 @@ class Order < ActiveRecord::Base
 	validates :phone, presence: true, format: { with: VALID_PHONE_REGEX }
 	validates :surcharge, presence: true
 
+	def running
+		driver_id != nil
+	end
+
+	def done
+		receipt != nil
+	end
 
 	#def self.rest_address(user)
 		#user_ids = "SELECT user_id FROM orders

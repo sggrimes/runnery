@@ -15,12 +15,29 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @orders = @user.orders.paginate(page: params[:page], :per_page => 10)
-    if !driver?
-    @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 10)
-  else
-    @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 10)
   end
-  end
+
+def show_run
+  @user = User.find_by(params[:id])
+   if driver?
+    @feed_items = current_user.driver_run.paginate(page: params[:page], :per_page => 10)
+    #@feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 10)
+    else
+    @feed_items = current_user.restaurant_run.paginate(page: params[:page], :per_page => 10)
+    #@feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 10)
+   end
+ end
+
+ def show_done
+  @user = User.find_by(params[:id])
+   if driver?
+    @feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 10)
+    #@feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 10)
+    else
+    @feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 10)
+    #@feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 10)
+   end
+ end
 
   # GET /users/new
   def new

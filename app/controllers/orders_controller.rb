@@ -3,8 +3,6 @@ class OrdersController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy, :update]
   before_action :correct_user,   only: :destroy
 
-
-
   # GET /orders
   # GET /orders.json
   def index
@@ -15,7 +13,7 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show 
     @order = Order.find_by(params[:id])
-   end
+end
 
 
   # GET /orders/new
@@ -54,14 +52,10 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    respond_to do |format|
-     if @order.update(order_params)
-        format.html { redirect_to root_url, notice: 'Order Running!' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+    @feed_item = Order.find(params[:id])
+     if @feed_item.update(order_params)
+        flash[:success] = "Order Running!"
+      redirect_to running_path
     end
   end
 
@@ -75,7 +69,6 @@ class OrdersController < ApplicationController
       #format.json { head :no_content }
     #end
   end
-
   
 
   private

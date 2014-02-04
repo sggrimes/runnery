@@ -4,9 +4,13 @@
  
   <span class="content"><%= feed_item.address %></span><br>
 
+   <s>$</s><span class="content"><%= feed_item.surcharge %></span><br>
+
   <span class="timestamp">
     <%= time_ago_in_words(feed_item.created_at) %> ago.
-  </span>
+  </span><br>
+
+
 
   <% if !driver? %>
    
@@ -14,18 +18,42 @@
 
                                    <% else %>
 
-     <%= form_for feed_item do |f| %>
+<% if feed_item.done %>
+
+<% else %>
+
+
+<% if feed_item.running %>
+
+    <%= form_for feed_item do |f| %>
      
 
-        <%= f.hidden_field :driver_id, :value => @user.id %>
-        <%= f.submit "Run!", class: "btn-small btn-success" %> 
+        <%= f.hidden_field :receipt, :value => true %>
+        <%= f.submit "Done!", class: "btn-small btn-primary" %> 
 
         <% end %>
 
-                                     <% end %>
+
+
+        <% else %>
+
+     <%= form_for feed_item do |f| %>
+     
+
+        <%= f.hidden_field :driver_id, :value => current_user.id %>
+        <%= f.submit "Run!", class: "btn-small btn-success" %> 
+        <% end %>
+
+       <% end %>
+
+        <% end %>
+
+      <% end %>
+
+      
+
+
+
+      
                                    
-
-
-  
-  
-</li><br>
+</li>

@@ -1,21 +1,20 @@
-<% @user ||= current_user %>
 <% if !driver? %>
 <div class="stats">
   <a href="/" >
     <strong id="waiting" class="stat">
-      <%= @user.restaurant_wait.count %>
+      <%= current_user.restaurant_wait.count %>
     </strong>
     Waiting
   </a>
-  <a href="<%= running_orders_path(@user) %>">
+  <a href="<%= running_path %>">
     <strong id="running" class="stat">
-      <%= @user.restaurant_run.count %>
+      <%= current_user.restaurant_run.count %>
     </strong>
     Running
   </a>
-  <a href="<%= done_orders_path(@user) %>">
+  <a href="<%= done_path %>">
     <strong id="done" class="stat">
-      <%= @user.restaurant_done.count %>
+      <%= current_user.restaurant_done.count %>
     </strong>
     Done
   </a>
@@ -26,19 +25,19 @@
 <div class="stats">
   <a href="/" >
     <strong id="waiting" class="stat">
-      <%= @user.driver_wait.count %>
+      <%= current_user.driver_wait.count %>
     </strong>
     Waiting
   </a>
-  <a href="<%= running_orders_path(@user) %>">
+  <a href="<%= running_path %>">
     <strong id="running" class="stat">
-      <%= @user.driver_run.count %>
+      <%= current_user.driver_run.count %>
     </strong>
     Running
   </a>
-  <a href="<%= done_orders_path(@user) %>">
+  <a href="<%= done_path %>">
     <strong id="done" class="stat">
-      <%= @user.driver_done.count %>
+      <%= current_user.driver_done.count %>
     </strong>
     Done
   </a>

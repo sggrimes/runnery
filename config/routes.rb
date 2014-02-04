@@ -5,7 +5,6 @@ Runnery::Application.routes.draw do
   end
 end
 
-
   
  resources :sessions, only: [:new, :create, :destroy]
  resources :orders, only: [:create,:destroy,:update]
@@ -13,8 +12,8 @@ end
  
 
  root 'static_pages#home'
- match '/running_orders',  to: 'orders#show',  via: 'get'
- match '/done_orders',  to: 'orders#show',  via: 'get'
+ match '/running',  to: 'users#show_run',  via: 'get'
+ match '/done',  to: 'users#show_done',  via: 'get'
  match '/signup',  to: 'users#new',  via: 'get'
  match '/signin',  to: 'sessions#new',         via: 'get'
  match '/signout', to: 'sessions#destroy',     via: 'delete'
