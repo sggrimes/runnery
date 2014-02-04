@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 	has_secure_password
 	validates :password, length: { minimum:6 }
 
+  
+
 
   def restaurant_wait
      
@@ -33,8 +35,8 @@ class User < ActiveRecord::Base
 
 
      Order.where(:user_id => id)
-     Order.where("receipt IS NOT?", nil)
-     Order.where("driver_id IS NOT ?", nil)
+          .where("receipt IS NOT ?", nil)
+          .where("driver_id IS NOT ?", nil)
           
      
   end

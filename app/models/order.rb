@@ -8,6 +8,11 @@ class Order < ActiveRecord::Base
 	validates :phone, presence: true, format: { with: VALID_PHONE_REGEX }
 	validates :surcharge, presence: true
 
+	def origin
+		o = User.where(:id => user_id).pluck(:address)
+		o.shift.strip
+	end
+
 	def running
 		driver_id != nil
 	end
@@ -16,9 +21,5 @@ class Order < ActiveRecord::Base
 		receipt != nil
 	end
 
-	#def self.rest_address(user)
-		#user_ids = "SELECT user_id FROM orders
-					#WHERE user_id = user.id"
-		#where("id IN #{address_ids}) OR id = :user_id", user_id: user.id)
-	#end
+	
 	end

@@ -1,24 +1,31 @@
 <li id="<%= feed_item.id %>">
 
-	<span class="content"><%= feed_item.user_id %></span><br>
+	<span class="content"><%= feed_item.origin %></span><br>
  
   <span class="content"><%= feed_item.address %></span><br>
 
    <s>$</s><span class="content"><%= feed_item.surcharge %></span><br>
 
+   <span class="content"><%= feed_item.pay_type ? 'Pay cash up-front' : 'Paid with card' %></span><br>
   <span class="timestamp">
     <%= time_ago_in_words(feed_item.created_at) %> ago.
   </span><br>
 
 
 
-  <% if !driver? %>
+  <% if !driver? && !feed_item.done%>
+
+ 
    
      <%= button_to "Cancel!", feed_item, class: "btn-danger",method: :delete, data: { confirm: "Do you mean to cancel this order?" },title: feed_item.user_id  %>
+
+    
 
                                    <% else %>
 
 <% if feed_item.done %>
+
+<br>
 
 <% else %>
 
