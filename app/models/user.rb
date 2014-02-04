@@ -12,40 +12,50 @@ class User < ActiveRecord::Base
 
   def restaurant_wait
      
-     Order.where("driver_id IS NULL AND user_id IS ?", id)
+     Order.where(:driver_id => nil)
+          .where(:user_id => id)
+
      
   end
 
   def restaurant_run
 
-    Order.where("receipt IS NULL AND driver_id IS NOT NULL 
-                  AND user_id IS ?", id)
+   
+     Order.where(:user_id => id)
+     .where(:receipt => nil)
+     .where("driver_id IS NOT ?", nil) 
+          
        
 
   end
 
   def restaurant_done
 
-     Order.where("receipt IS NOT NULL AND driver_id IS NOT NULL 
-                  AND user_id IS ?", id)
+
+     Order.where(:user_id => id)
+     Order.where("receipt IS NOT?", nil)
+     Order.where("driver_id IS NOT ?", nil)
+          
      
   end
 
 
   def driver_wait
 
-    Order.where("driver_id IS NULL")
+    Order.where(:driver_id => nil)
 
   end
 
   def driver_run
-    Order.where("receipt IS NULL AND driver_id IS ?", id)
+    Order.where(:receipt => nil)
+         .where(:driver_id => id)
   
   end
 
   def driver_done
 
-    Order.where("receipt IS NOT NULL AND driver_id IS ?", id)
+    Order.where("receipt IS NOT ?", nil)
+         .where(:driver_id => id)
    
   end
 
