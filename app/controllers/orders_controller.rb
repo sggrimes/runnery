@@ -30,7 +30,7 @@ end
   def create
     @order = current_user.orders.build(order_params)
     if @order.save
-      flash[:success] = "Order Live!"
+      flash[:success] = "Order Posted!"
       redirect_to root_url
     else
       @feed_items = []
@@ -53,11 +53,18 @@ end
   # PATCH/PUT /orders/1.json
   def update
     @feed_item = Order.find(params[:id])
+    if !@feed_item.running
      if @feed_item.update(order_params)
         flash[:success] = "Order Running!"
       redirect_to running_path
     end
+    else
+      if @feed_item.update(order_params)
+        flash[:success] = "Order Done!"
+      redirect_to done_path
+    end
   end
+end
 
   # DELETE /orders/1
   # DELETE /orders/1.json

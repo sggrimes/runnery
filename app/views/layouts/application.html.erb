@@ -2,48 +2,64 @@
 <html>
 	<head>
   		<title><%= full_title(yield(:title)) %></title>
+
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
- <%= render 'layouts/shim' %>
+
+  <%= render 'layouts/shim' %>
+
 	</head>
+
 	<body>
+
 		<%= render 'layouts/header' %>
+
 		<div class="container">
 			<%= link_to image_tag("delivery.gif", alt: "Delivery"), root_path, id: "image" %>
 
 		 <% if !signed_in? %>	
+
 			<h1>Welcome!!!</h1>
-			<% else %>
-			<h1>Hey <%= current_user.name %>!!!</h1>
-			<% end %>
+
+		 <% else %>
+			<h1>Hey <%= current_user.name %> !!!</h1>
+
+		 <% end %>
 			
-		</div>
+		</div> 
 
 
 	
-		<div class= "hero-unit">
+	<div class= "hero-unit">
 			
 			<% flash.each do |key, value| %>
-        	<%= content_tag(:div, value, class: "alert alert-#{key}") %>
-	<%end%>
 
-	<% if signed_in? %>
+        		<%= content_tag(:div, value, 
+        			class: "alert alert-#{key}") %>
+	
+			<%end%>
 
-	<div class = "container">
 
-	<h3>Orders:</h3>
-        <%= render 'shared/stats' %>
-    </div>
-      <br>
+		<% if signed_in? %>
 
-      <%end%>
-			<%= yield %>
+			<div class = "container">
+
+				<h3>Orders:</h3>
+        		<%= render 'shared/stats' %>
+    
+      			<br>
 			</div>
+
+      	<%end%>
+      
+				<%= yield %>
+
+			</div>
+
 			<%= render 'layouts/footer' %>
 			<%= debug(params) if Rails.env.development? %>
-			
-	
 	
 	</body>
 </html>

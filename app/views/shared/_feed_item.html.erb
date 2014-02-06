@@ -1,46 +1,179 @@
 <li id="<%= feed_item.id %>">
 
-	<span class="content"><%= feed_item.origin %></span><br>
- 
-  <span class="content"><%= feed_item.address %></span><br>
+  <% if !driver? && !feed_item.running %>
 
-   <s>$</s><span class="content"><%= feed_item.surcharge %></span><br>
+      <span class="content">
+          <%= feed_item.phone %>
+      </span><br>
 
-   <span class="content"><%= feed_item.pay_type ? 'Pay cash up-front' : 'Paid with card' %></span><br>
-  <span class="timestamp">
-    <%= time_ago_in_words(feed_item.created_at) %> ago.
-  </span><br>
+  <% else %>
+
+    <% if !driver? && feed_item.running %>
+
+      <li class="dropdown">
+
+        <a href="#" class="dropdown-toggle" 
+            data-toggle="dropdown">
+
+            <%= feed_item.driver_name %>
+
+        </a>
+
+        <ul class="dropdown-menu">              
+
+            <li><%= feed_item.driver_phone %></li>
+
+        </ul>
+
+      </li>
+
+    <% else %>
+
+      <% if feed_item.running %>
+
+        <li class="dropdown">
+
+          <a href="#" class="dropdown-toggle" 
+             data-toggle="dropdown">
+
+                <%= feed_item.origin_address %>
+
+          </a>
+
+          <ul class="dropdown-menu">              
+
+                <li><%= feed_item.origin_phone %></li>
+
+          </ul>
+
+         </li>
+
+       <% else %>
+
+        <span class="content">
+          <%= feed_item.origin_address %>
+        </span><br>
+
+
+       <% end %>
+    <% end %>  
+<% end %>
+
+  <% if feed_item.running %>
+
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" 
+         data-toggle="dropdown">
+
+                <%= feed_item.address %>
+
+      </a>
+
+      <ul class="dropdown-menu">              
+
+        <li><%= feed_item.phone %></li>
+
+      </ul>
+    </li>
+
+  <% else %>
+
+     <span class="content">
+      <%= feed_item.address %>
+    </span><br>
+
+  <% end %>
+
+    <s>$</s>
+    <span class="content">
+      <%= feed_item.surcharge %>
+    </span><br>
+
+    <span class="content">
+      <%= feed_item.pay_type ? 
+          'Pay cash up-front' : 'Paid with card' %>
+    </span><br>
+
+    <span class="timestamp">
+      <%= time_ago_in_words(feed_item.created_at) %> ago.
+    </span><br>
 
 
 
   <% if !driver? && !feed_item.done%>
-
- 
    
-     <%= button_to "Cancel!", feed_item, class: "btn-danger",method: :delete, data: { confirm: "Do you mean to cancel this order?" },title: feed_item.user_id  %>
+     <%= button_to "Cancel!", feed_item, class: "btn-danger",
+                    method: :delete, 
+                    data: { confirm: "Cancel this order?" },
+                    title: feed_item.user_id  %>
 
-    
+  <% else %>
 
-                                   <% else %>
+    <% if feed_item.done %>
 
-<% if feed_item.done %>
+      <% if feed_item.redeemed? %>
+      <% else %>
+
+      <% if driver? %>
+
+        <% if feed_item.receipt? %>
+
+            <%= form_for feed_item do |f| %>
+     
+
+               <%= f.hidden_field :redeemed, :value => true %>
+                <%= f.submit "Receipt!", 
+                      class: "btn-small btn-warning" %> 
+        <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
 
 <br>
 
-<% else %>
+  <% else %>
 
 
-<% if feed_item.running %>
+  <% if feed_item.running %>
+    <% if feed_item.paid_card %>
 
-    <%= form_for feed_item do |f| %>
-     
+    <li class="dropdown">
+      <a href="#" class="btn btn-small btn-inverse dropdown-toggle" 
+          data-toggle="dropdown">
+                Done!
+      </a>
 
-        <%= f.hidden_field :receipt, :value => true %>
-        <%= f.submit "Done!", class: "btn-small btn-primary" %> 
+      <ul class="dropdown-menu"> 
+
+        <%= form_for feed_item do |f| %>
+
+            <%= f.hidden_field :receipt, :value => true %>
+            <li><%= f.submit "Receipt", 
+                              class: "btn btn-inverse" %></li> 
 
         <% end %>
 
+<%= form_for feed_item do |f| %>
+     
 
+        <%= f.hidden_field :receipt, :value => false %>
+        <%= f.submit "NO receipt", class: "btn btn-inverse" %> 
+
+        <% end %>
+        
+      </ul>
+    </li>
+
+        <% else %>
+
+     <%= form_for feed_item do |f| %>
+     
+
+        <%= f.hidden_field :receipt, :value => false %>
+        <%= f.submit "Done!", class: "btn-small btn-inverse" %> 
+
+        <% end %>
+        <% end %>
 
         <% else %>
 
@@ -49,18 +182,10 @@
 
         <%= f.hidden_field :driver_id, :value => current_user.id %>
         <%= f.submit "Run!", class: "btn-small btn-success" %> 
-        <% end %>
-
-       <% end %>
-
-        <% end %>
 
       <% end %>
+    <% end %>
+  <% end %>
+<% end %>
 
-      
-
-
-
-      
-                                   
 </li>
