@@ -1,11 +1,6 @@
 Runnery::Application.routes.draw do
- #resources :users do
-  #member do
-    #get "feed"
-  #end
-#end
 
- resources :users, only: [:edit, :update, :create, :destroy] 
+ resources :users
  resources :sessions, only: [:new, :create, :destroy]
  resources :orders, only: [:create,:destroy,:update]
 
