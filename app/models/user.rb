@@ -37,6 +37,18 @@ class User < ActiveRecord::Base
      Order.where(:user_id => id)
           .where("receipt IS NOT ?", nil)
           .where("driver_id IS NOT ?", nil)
+          .where("DATE(updated_at) = ?", Date.today)
+          
+     
+  end
+
+  def restaurant_all_done
+
+
+     Order.where(:user_id => id)
+          .where("receipt IS NOT ?", nil)
+          .where("driver_id IS NOT ?", nil)
+
           
      
   end
@@ -55,6 +67,14 @@ class User < ActiveRecord::Base
   end
 
   def driver_done
+
+    Order.where("receipt IS NOT ?", nil)
+         .where(:driver_id => id)
+         .where("DATE(updated_at) = ?", Date.today)
+   
+  end
+
+  def driver_all_done
 
     Order.where("receipt IS NOT ?", nil)
          .where(:driver_id => id)

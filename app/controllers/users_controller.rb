@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   #before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy,:running, :done]
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
 
@@ -17,25 +17,30 @@ class UsersController < ApplicationController
     @orders = @user.orders.paginate(page: params[:page], :per_page => 10)
   end
 
-def show_run
+def running
   @user = User.find_by(params[:id])
    if driver?
     @feed_items = current_user.driver_run.paginate(page: params[:page], :per_page => 10)
-    #@feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 10)
     else
     @feed_items = current_user.restaurant_run.paginate(page: params[:page], :per_page => 10)
-    #@feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 10)
    end
  end
 
- def show_done
+ def done_today
   @user = User.find_by(params[:id])
    if driver?
     @feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 10)
-    #@feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 10)
     else
     @feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 10)
-    #@feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 10)
+   end
+ end
+
+ def all_done
+  @user = User.find_by(params[:id])
+   if driver?
+    @feed_items = current_user.driver_all_done.paginate(page: params[:page], :per_page => 10)
+    else
+    @feed_items = current_user.restaurant_all_done.paginate(page: params[:page], :per_page => 10)
    end
  end
 

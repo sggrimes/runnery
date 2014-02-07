@@ -7,8 +7,9 @@ Runnery::Application.routes.draw do
  
 
  root 'static_pages#home'
- match '/running',  to: 'users#show_run',  via: 'get'
- match '/done',  to: 'users#show_done',  via: 'get'
+ match '/running',  to: 'users#running',  via: 'get'
+ match '/done',  to: 'users#done_today',  via: 'get'
+ match '/all_done',  to: 'users#all_done',  via: 'get'
  match '/signup',  to: 'users#new',  via: 'get'
  match '/signin',  to: 'sessions#new',         via: 'get'
  match '/signout', to: 'sessions#destroy',     via: 'delete'
