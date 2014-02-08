@@ -30,6 +30,7 @@ textarea{
 	resize: vertical;
 }
 
+
 th {
 	
 	padding-right: 50px;
@@ -96,12 +97,15 @@ div{
 
 .span4 {
 	margin-bottom: 10px;
+	margin-right: 100px;
 	}
 }
 
 li {
 
+
 list-style-type: none;
+
 
 
 	ul.dropdown-menu {
@@ -177,6 +181,7 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
   font-family: "Courier New"
 }
+
 
 input {
   height: auto !important;
