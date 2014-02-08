@@ -175,10 +175,12 @@ input, textarea, select, .uneditable-input {
   margin-bottom: 0px;
   resize: vertical;
   @include box_sizing;
+  font-family: "Courier New"
 }
 
 input {
   height: auto !important;
+
 }
 
 #error_explanation {
