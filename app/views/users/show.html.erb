@@ -1,44 +1,29 @@
 <div class="container">
-<div class="span8">
-    <% if @user.orders.any? %>
-      <h3>Orders (<%= @user.orders.count %>)</h3>
-      <ol class="Orders">
-        <%= render @orders %>
-      </ol>
-      <%= will_paginate @orders %>
-    <% end %>
-  </div>
-</div>
 
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section>
-        <%= render 'shared/stats' %>
-      </section>
+  <h3> User Register: </h3>
+  <br> 
 
+  
 
-
-<p>
-  <strong>Name:</strong>
+<p><h4>
   <%= @user.name %>
-</p>
+</h4></p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @user.phone %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @user.address %>
-</p>
-
-<p>
-  <strong>Type:</strong>
+<p><h4>
   <%= @user.user_type ? 'Driver' : 'Restaurant' %>
-</p>
+</h4></p>
+
+<p><h4>
+  <%= @user.phone %>
+</h4></p>
+
+<p><h4>
+  <%= @user.address %>
+</h4></p>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+
+<br>
+<%= link_to 'Edit', edit_user_path(@user) %> 
+</div>

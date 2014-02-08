@@ -1,6 +1,8 @@
 <% provide(:title, 'All Done') %>
 <div class="container">
 
+  <% if @feed_items.any? %>
+
     <h3> Done: All (
 
       <% if driver? %>
@@ -27,7 +29,7 @@
        <% end %>
 
       <th>Delivered to:</th>
-      <th>Time:</th>
+      <th>When:</th>
       <th></th>
     </tr>
   </thead>
@@ -74,7 +76,7 @@
       </li></td>
 
 
-        <td><%= feed_item.created_at %></td>
+        <td><%= time_ago_in_words(feed_item.created_at) %> ago.</td>
 
     <% if !feed_item.redeemed? %>
         <% if driver? %>
@@ -96,4 +98,7 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate @feed_items %>
+<% end %>
 </div>

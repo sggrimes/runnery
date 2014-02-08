@@ -20,27 +20,27 @@ class UsersController < ApplicationController
 def running
   @user = User.find_by(params[:id])
    if driver?
-    @feed_items = current_user.driver_run.paginate(page: params[:page], :per_page => 10)
+    @feed_items = current_user.driver_run.paginate(page: params[:page], :per_page => 3)
     else
-    @feed_items = current_user.restaurant_run.paginate(page: params[:page], :per_page => 10)
+    @feed_items = current_user.restaurant_run.paginate(page: params[:page], :per_page => 3)
    end
  end
 
  def done_today
   @user = User.find_by(params[:id])
    if driver?
-    @feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 10)
+    @feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 10).reorder("created_at DESC")
     else
-    @feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 10)
+    @feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 10).reorder("created_at DESC")
    end
  end
 
  def all_done
   @user = User.find_by(params[:id])
    if driver?
-    @feed_items = current_user.driver_all_done.paginate(page: params[:page], :per_page => 10)
+    @feed_items = current_user.driver_all_done.paginate(page: params[:page], :per_page => 10).reorder("created_at DESC")
     else
-    @feed_items = current_user.restaurant_all_done.paginate(page: params[:page], :per_page => 10)
+    @feed_items = current_user.restaurant_all_done.paginate(page: params[:page], :per_page => 10).reorder("created_at DESC")
    end
  end
 

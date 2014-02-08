@@ -177,12 +177,18 @@
 
         <% else %>
 
+        <% if current_user.driver_run.count >= 3 %>
+
+        <span class="content"> Please finish a run!</span><br><br>
+        <% else %>
+
      <%= form_for feed_item do |f| %>
      
 
         <%= f.hidden_field :driver_id, :value => current_user.id %>
         <%= f.submit "Run!", class: "btn-small btn-success" %> 
 
+        <% end %>
       <% end %>
     <% end %>
   <% end %>

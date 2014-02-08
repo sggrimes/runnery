@@ -48,4 +48,5 @@ class Order < ActiveRecord::Base
 		redeemed == true
 	end
 	
+	
 	end

@@ -13,8 +13,7 @@ Runnery::Application.routes.draw do
  match '/signup',  to: 'users#new',  via: 'get'
  match '/signin',  to: 'sessions#new',         via: 'get'
  match '/signout', to: 'sessions#destroy',     via: 'delete'
- match '/help',  to: 'static_pages#help',  via: 'get'
- match '/about', to: 'static_pages#about', via: 'get'
+ match '/site_info', to: 'static_pages#site_info', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

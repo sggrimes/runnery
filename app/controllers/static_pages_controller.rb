@@ -11,10 +11,7 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def help
-  end
-
-  def about
+  def site_info
   end
 end
 
