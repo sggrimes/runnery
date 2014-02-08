@@ -137,7 +137,7 @@
   <% if feed_item.running %>
     <% if feed_item.paid_card %>
 
-    <li class="dropdown">
+    <li class="dropdown" id="done">
       <a href="#" class="btn btn-small btn-inverse dropdown-toggle" 
           data-toggle="dropdown">
                 Done!
@@ -162,7 +162,7 @@
         <% end %>
         
       </ul>
-    </li>
+    </li><br>
 
      <%= form_for feed_item do |f| %>
      

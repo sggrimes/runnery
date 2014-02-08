@@ -103,7 +103,6 @@ li {
 
 list-style-type: none;
 
-	
 
 	ul.dropdown-menu {
 
@@ -146,14 +145,6 @@ footer {
 	border-top: 1px solid $grayMediumLight;
 	color: $grayLight;	
 
-	a {
-		color: $gray;
-
-	&:hover {
-		color: $grayDarker;
-		}
-	}
-
 	ul { 
 
 			list-style: none;
@@ -181,7 +172,7 @@ footer {
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
   resize: vertical;
   @include box_sizing;
 }
@@ -209,7 +200,7 @@ input {
     float: left;
     padding: 0 10px;
     border-left: 1px solid $grayLighter;
-    color: gray;
+    color: white;
     &:first-child {
       padding-left: 0;
       border: 0;
