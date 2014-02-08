@@ -60,8 +60,13 @@ end
     end
     else
       if @feed_item.update(order_params)
+        if @feed_item.driver_id != nil
         flash[:success] = "Order Done!"
       redirect_to done_path
+    else
+      flash[:error] = "Order stopped!"
+      redirect_to running_path
+    end
     end
   end
 end

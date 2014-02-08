@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
      Order.where(:user_id => id)
           .where("receipt IS NOT ?", nil)
           .where("driver_id IS NOT ?", nil)
-          .where "DATE(created_at) = DATE(?)", Time.now
+          .where("DATE(created_at) = DATE(?)", Time.now)
           
      
   end
@@ -70,7 +70,8 @@ class User < ActiveRecord::Base
 
     Order.where("receipt IS NOT ?", nil)
          .where(:driver_id => id)
-         .where "DATE(created_at) = DATE(?)", Time.now
+         .where("DATE(created_at) = DATE(?)", Time.now)
+         
    
   end
 

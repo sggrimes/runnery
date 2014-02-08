@@ -164,6 +164,14 @@
       </ul>
     </li>
 
+     <%= form_for feed_item do |f| %>
+     
+
+        <%= f.hidden_field :driver_id, :value => nil %>
+        <%= f.submit "Stop!", class: "btn-small btn-danger" %> 
+
+        <% end %>
+
         <% else %>
 
      <%= form_for feed_item do |f| %>
@@ -171,6 +179,14 @@
 
         <%= f.hidden_field :receipt, :value => false %>
         <%= f.submit "Done!", class: "btn-small btn-inverse" %> 
+
+        <% end %>
+
+        <%= form_for feed_item do |f| %>
+     
+
+        <%= f.hidden_field :driver_id, :value => nil %>
+        <%= f.submit "Stop!", class: "btn-small btn-danger" %> 
 
         <% end %>
         <% end %>
