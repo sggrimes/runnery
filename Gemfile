@@ -7,6 +7,8 @@ ruby '1.9.3'
 	gem 'bcrypt-ruby'
 	gem 'will_paginate'
 	gem 'bootstrap-will_paginate'
+	
+	
 
 group :development, :test do
 	gem 'rspec-rails', '2.13.1'
@@ -48,6 +50,10 @@ group :production do
 	gem 'pg'
 	gem 'rails_12factor'
 end
+
+	gem 'geocoder'
+	gem 'gmaps4rails'
+	
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

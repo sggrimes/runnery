@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203163405) do
+ActiveRecord::Schema.define(version: 20140209001354) do
 
   create_table "orders", force: true do |t|
     t.string   "address"
@@ -24,6 +24,10 @@ ActiveRecord::Schema.define(version: 20140203163405) do
     t.integer  "driver_id"
     t.boolean  "receipt"
     t.boolean  "redeemed"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.float    "origin_latitude"
+    t.float    "origin_longitude"
   end
 
   add_index "orders", ["user_id", "created_at"], name: "index_orders_on_user_id_and_created_at"

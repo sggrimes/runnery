@@ -24,6 +24,11 @@ def running
     else
     @feed_items = current_user.restaurant_run.paginate(page: params[:page], :per_page => 3)
    end
+    
+    @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
+        marker.lat feed_item.latitude
+        marker.lng feed_item.longitude
+    end
  end
 
  def done_today
@@ -33,6 +38,11 @@ def running
     else
     @feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 10).reorder("created_at DESC")
    end
+
+    @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
+        marker.lat feed_item.latitude
+        marker.lng feed_item.longitude
+    end
  end
 
  def all_done
