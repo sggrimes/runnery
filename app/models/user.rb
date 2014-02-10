@@ -9,9 +9,6 @@ class User < ActiveRecord::Base
 	has_secure_password
 	validates :password, length: { minimum:6 }
 
-  geocoded_by :ip_address
-  after_validation :geocode
-
 
 
   def restaurant_wait
