@@ -26,8 +26,10 @@ def running
    end
     
     @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
+      
         marker.lat feed_item.latitude
         marker.lng feed_item.longitude
+        marker.infowindow feed_item.address
     end
  end
 
@@ -42,6 +44,7 @@ def running
     @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
         marker.lat feed_item.latitude
         marker.lng feed_item.longitude
+        marker.infowindow feed_item.address
     end
  end
 

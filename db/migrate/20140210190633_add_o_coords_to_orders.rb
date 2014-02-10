@@ -1,4 +1,4 @@
-class AddOriginLatLongToOrders < ActiveRecord::Migration
+class AddOCoordsToOrders < ActiveRecord::Migration
   def change
   	add_column :orders, :origin_latitude, :float
   	add_column :orders, :origin_longitude, :float

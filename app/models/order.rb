@@ -9,10 +9,21 @@ class Order < ActiveRecord::Base
 	validates :phone, presence: true, format: { with: VALID_PHONE_REGEX }
 	validates :surcharge, presence: true
 
-	geocoded_by :address
-	after_validation :geocode
+	geocoded_by :address, latitude: :latitude, longitude: :longitude
+	geocoded_by :origin_address, latitude: :origin_latitude, longitude: :origin_longitude
 	
+	after_validation :custom_geocode
 
+	def custom_geocode
+   		var = Geocoder.coordinates(self.address)
+   		var2 = Geocoder.coordinates(self.origin_address)
+   		self.latitude = var.first
+   		self.longitude = var.last
+   		self.origin_latitude = var2.first
+   		self.origin_longitude = var2.last
+end
+	
+	
 	def origin_address
 		o = User.where(:id => user_id).pluck(:address)
 		o.shift.strip
