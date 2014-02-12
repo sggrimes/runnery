@@ -19,7 +19,9 @@
 
       <section class="span4 pull-left">
         <h3>Waiting:</h3>
-          <%= render 'shared/feed' %>
+        <% for location in @locations %>
+          <li><%= render 'shared/feed' %></li>
+        <% end %> 
       </section>
 
       <div class= "pull-right" style='width: 500px;'><h3>Restaurants Map:</h3>
