@@ -47,10 +47,9 @@ class User < ActiveRecord::Base
   def driver_wait
 
     Order.where(:driver_id => nil)
-         .near([@locate.latitude, @locate.longitude], 1)
+         .near([41.890165, -87.782721], 1)
 
-         #([41.890165, -87.782721], 1)
-         
+         #([@locate.latitude, @locate.longitude], 1)
 
   end
 
