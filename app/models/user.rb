@@ -2,12 +2,12 @@ class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
 
 	validates :name, presence: true, length: { maximum: 50 }
-	before_create :create_remember_token
 	VALID_PHONE_REGEX = /(\d{10})/
 	validates :phone, presence: true, format: { with: VALID_PHONE_REGEX }, uniqueness: true
 	validates :address, allow_blank: true, uniqueness: true
 	has_secure_password
 	validates :password, length: { minimum:6 }
+  before_create :create_remember_token
 
 
 
@@ -15,34 +15,27 @@ class User < ActiveRecord::Base
      
      Order.where(:driver_id => nil)
           .where(:user_id => id)
-
      
   end
 
   def restaurant_run
 
-   
      Order.where(:user_id => id)
      .where(:receipt => nil)
      .where("driver_id IS NOT ?", nil) 
-          
-       
 
   end
 
   def restaurant_done
-
 
      Order.where(:user_id => id)
           .where("receipt IS NOT ?", nil)
           .where("driver_id IS NOT ?", nil)
           .where("DATE(created_at) = DATE(?)", Time.now)
           
-     
   end
 
   def restaurant_all_done
-
 
      Order.where(:user_id => id)
           .where("receipt IS NOT ?", nil)
@@ -54,10 +47,15 @@ class User < ActiveRecord::Base
   def driver_wait
 
     Order.where(:driver_id => nil)
+         .near([@locate.latitude, @locate.longitude], 1)
+
+         #([41.890165, -87.782721], 1)
+         
 
   end
 
   def driver_run
+
     Order.where(:receipt => nil)
          .where(:driver_id => id)
   
@@ -68,7 +66,6 @@ class User < ActiveRecord::Base
     Order.where("receipt IS NOT ?", nil)
          .where(:driver_id => id)
          .where("DATE(created_at) = DATE(?)", Time.now)
-         
    
   end
 

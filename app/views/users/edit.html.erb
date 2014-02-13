@@ -1,5 +1,5 @@
 <div class="container">
-<h2>Edit Register</h2>
+<h3>Edit Register</h3>
 
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
@@ -40,13 +40,14 @@
   </div>
 
   
-    <%= f.submit "Change!", class: "btn-large btn-inverse" %>
+    <%= f.submit "Edit!", class: "btn-large btn-inverse" %>
 	
 
 </div>
 
 <% end %>
 
+</div>
 </div>
 
 
