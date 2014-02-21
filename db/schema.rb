@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140210190633) do
+ActiveRecord::Schema.define(version: 20140219180745) do
+
+  create_table "locations", force: true do |t|
+    t.float    "lat"
+    t.float    "long"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "orders", force: true do |t|
     t.string   "address"
@@ -36,8 +44,6 @@ ActiveRecord::Schema.define(version: 20140210190633) do
     t.string   "name"
     t.string   "phone"
     t.string   "address"
-    t.float    "latitude"
-    t.float    "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
@@ -46,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140210190633) do
     t.boolean  "admin",           default: false
   end
 
+  add_index "users", ["phone"], name: "index_users_on_phone"
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end

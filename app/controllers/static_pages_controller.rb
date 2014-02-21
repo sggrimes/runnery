@@ -8,9 +8,9 @@ class StaticPagesController < ApplicationController
       @feed_items = current_user.restaurant_wait.paginate(page: params[:page], :per_page => 3)
     
       if driver?
+        @location = current_user.build_location
 
         @feed_items = current_user.driver_wait.paginate(page: params[:page], :per_page => 3)
-        @locate = request.location
 
         @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
         
@@ -25,7 +25,7 @@ class StaticPagesController < ApplicationController
 
   def site_info
   end
-  
+
 end
 
 

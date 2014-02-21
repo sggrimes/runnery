@@ -88,6 +88,13 @@ h2 {
 	
 }
 
+h3 {
+	
+	width: 100%;
+	
+
+}
+
 
 div{
 
@@ -104,17 +111,19 @@ div{
 	}
 }
 
+
+
 li {
 
 
 list-style-type: none;
 
 
-
 	ul.dropdown-menu {
 
 		min-width: 90px;
 		left: none;
+		background-color: #eaeaea;
 
 		}
 	}
@@ -185,6 +194,19 @@ input, textarea, select, .uneditable-input {
   font-family: "Courier New"
 }
 
+row.span1{
+
+	margin: 5px 0 0 50px;
+
+}
+
+form.edit_location {
+	
+	width: 10%;
+	margin-top: 5px;
+
+	
+}
 
 input {
   height: auto !important;

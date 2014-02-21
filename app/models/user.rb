@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
+  has_one :location
 
 	validates :name, presence: true, length: { maximum: 50 }
 	VALID_PHONE_REGEX = /(\d{10})/
@@ -8,7 +9,6 @@ class User < ActiveRecord::Base
 	has_secure_password
 	validates :password, length: { minimum:6 }
   before_create :create_remember_token
-
 
 
   def restaurant_wait
@@ -46,10 +46,13 @@ class User < ActiveRecord::Base
 
   def driver_wait
 
-    Order.where(:driver_id => nil)
-         .near([41.890165, -87.782721], 1)
+    #lat = Location.where(:user_id => id)
+                  #.pluck(:lat)
+    #long = Location.where(:user_id => id)
+                  #.pluck(:long)
 
-         #([@locate.latitude, @locate.longitude], 1)
+    Order.where(:driver_id => nil)
+         #.near([lat,long], 1)
 
   end
 

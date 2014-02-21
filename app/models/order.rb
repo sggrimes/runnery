@@ -21,7 +21,7 @@ class Order < ActiveRecord::Base
    		self.longitude = var.last
    		self.origin_latitude = var2.first
    		self.origin_longitude = var2.last
-end
+	end
 	
 	
 	def origin_address
@@ -64,5 +64,4 @@ end
 		redeemed == true
 	end
 	
-	
-	end
+end

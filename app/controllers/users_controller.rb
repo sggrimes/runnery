@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 # before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: :destroy
+  #before_action :admin_user,    only: :destroy
 
   # GET /users
   # GET /users.json
@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @orders = @user.orders.paginate(page: params[:page], :per_page => 10)
   end
 
   def running
@@ -103,7 +102,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted."
-    redirect_to users_url
+    redirect_to root_url
 
     #respond_to do |format|
       #format.json { head :no_content }

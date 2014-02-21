@@ -41,9 +41,11 @@
 
   
     <%= f.submit "Edit!", class: "btn-large btn-inverse" %>
-	
-
+	<br><br>
+    <%= link_to 'Destroy', @user, method: :delete, data: { confirm:          'Are you sure?' } %>
 </div>
+
+
 
 <% end %>
 

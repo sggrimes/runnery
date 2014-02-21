@@ -3,10 +3,10 @@ Runnery::Application.routes.draw do
  resources :users
  resources :sessions, only: [:new, :create, :destroy]
  resources :orders, only: [:create,:destroy,:update]
-
- 
+ resources :locations, only: [:create,:update]
 
  root 'static_pages#home'
+ 
  match '/running',  to: 'users#running',  via: 'get'
  match '/done',  to: 'users#done_today',  via: 'get'
  match '/all_done',  to: 'users#all_done',  via: 'get'

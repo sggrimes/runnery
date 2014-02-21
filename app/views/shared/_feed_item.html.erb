@@ -1,121 +1,120 @@
-<li id="<%= feed_item.id %>">
+<% if !feed_item.running %>
+  <% if driver? %>
 
-  <% if !driver? && !feed_item.running %>
+       <%= feed_item.origin_address %>
 
-      <span class="content">
-          <%= feed_item.phone %>
-      </span><br>
+       <br>
+
+       <%= feed_item.address %>
+
+       <br>
 
   <% else %>
 
-    <% if !driver? && feed_item.running %>
+        <%= feed_item.phone %>
 
-      <li class="dropdown">
+        <br>
+
+        <%= feed_item.address %>
+
+        <br>
+
+  <% end %>
+<% end %>
+
+<% if feed_item.running %>
+  <% if driver? %>
+
+       <li class="dropdown">
 
         <a href="#" class="dropdown-toggle" 
             data-toggle="dropdown">
 
-            <%= feed_item.driver_name %>
+            <%= feed_item.origin_address %>
 
         </a>
 
-        <ul class="dropdown-menu">              
+          <ul class="dropdown-menu">              
+
+            <%= feed_item.origin_phone %>
+
+          </ul>
+
+         </li>         
+
+  <% else %>
+
+        <li class="dropdown">
+
+          <a href="#" class="dropdown-toggle" 
+            data-toggle="dropdown">
+
+            <%= feed_item.driver_name %>
+
+          </a>
+
+            <ul class="dropdown-menu">              
 
             <%= feed_item.driver_phone %>
 
-        </ul>
+            </ul>
 
-      </li>
+        </li>
 
-    <% else %>
-
-      <% if feed_item.running %>
+  <% end %>
 
         <li class="dropdown">
 
           <a href="#" class="dropdown-toggle" 
              data-toggle="dropdown">
 
-                <%= feed_item.origin_address %>
+                <%= feed_item.address %>
 
           </a>
 
-          <ul class="dropdown-menu">              
+            <ul class="dropdown-menu">              
 
-                <%= feed_item.origin_phone %>
+              <%= feed_item.phone %>
 
-          </ul>
+            </ul>
 
-         </li>
+        </li>   
 
-       <% else %>
-
-        <span class="content">
-          <%= feed_item.origin_address %>
-        </span><br>
-
-
-       <% end %>
-    <% end %>  
 <% end %>
 
-  <% if feed_item.running %>
-
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" 
-         data-toggle="dropdown">
-
-                <%= feed_item.address %>
-
-      </a>
-
-      <ul class="dropdown-menu">              
-
-        <%= feed_item.phone %>
-
-      </ul>
-    </li>
-
-  <% else %>
-
-    <span class="content">
-      <%= feed_item.address %>
-    </span><br>
-
-  <% end %>
-
-    <s>$</s>
-    <span class="content">
-      <%= feed_item.surcharge %>
-    </span><br>
-
-    <span class="content">
-      <%= feed_item.pay_type ? 
-          'Pay cash up-front' : 'Paid with card' %>
-    </span><br>
-
-    <span class="timestamp">
-      <%= time_ago_in_words(feed_item.created_at) %> ago.
-    </span><br>
 
 
 
-  <% if !driver? && !feed_item.done%>
+
+
+<s>$</s>
+
+<%= feed_item.surcharge %>
+
+  <br>
+    
+<%= feed_item.pay_type ? 
+    'Pay cash up-front' : 'Paid with card' %>
+
+  <br>
+    
+<%= time_ago_in_words(feed_item.created_at) %> ago.
+
+  <br>
+
+
+<% if !driver? && !feed_item.done%>
    
-     <%= button_to "Cancel!", feed_item, class: "btn-danger",
-                    method: :delete, 
-                    data: { confirm: "Cancel this order?" },
-                    title: feed_item.user_id  %>
+  <%= button_to "Cancel!", feed_item, class: "btn-danger",
+                method: :delete, 
+                data: { confirm: "Cancel this order?" },
+                title: feed_item.user_id  %>
 
   <% else %>
-
-    <% if feed_item.done %>
-
-      <% if feed_item.redeemed? %>
+  <% if feed_item.done %>
+    <% if feed_item.redeemed? %>
       <% else %>
-
       <% if driver? %>
-
         <% if feed_item.receipt? %>
 
             <%= form_for feed_item do |f| %>
@@ -124,79 +123,79 @@
                <%= f.hidden_field :redeemed, :value => true %>
                 <%= f.submit "Receipt!", 
                       class: "btn-small btn-warning" %> 
-        <% end %>
+
+            <% end %>
         <% end %>
       <% end %>
     <% end %>
 
-<br>
+    <br>
 
-  <% else %>
+    <% else %>
+    <% if feed_item.running %>
+      <% if feed_item.paid_card %>
 
-
-  <% if feed_item.running %>
-    <% if feed_item.paid_card %>
-
-    <li class="dropdown" id="done">
-      <a href="#" class="btn btn-small btn-inverse dropdown-toggle" 
+        <li class="dropdown" id="done">
+        
+         <a href="#" class="btn btn-small btn-inverse dropdown-toggle" 
           data-toggle="dropdown">
                 Done!
-      </a>
+        </a>
 
-      <ul class="dropdown-menu"> 
+         <ul class="dropdown-menu"> 
 
-        <%= form_for feed_item do |f| %>
+          <%= form_for feed_item do |f| %>
 
             <%= f.hidden_field :receipt, :value => true %>
-            <li><%= f.submit "Receipt", 
-                              class: "btn btn-inverse" %></li> 
+            
+            <%= f.submit "Receipt", 
+                      class: "btn btn-inverse" %>
+
+          <% end %>
+
+          <%= form_for feed_item do |f| %>
+     
+
+            <%= f.hidden_field :receipt, :value => false %>
+
+            <%= f.submit "NO receipt", class: "btn btn-inverse" %> 
+
+          <% end %>
+        </ul>
+    </li>
+
+    <br>
+
+        <% else %>
+
+          <%= form_for feed_item do |f| %>
+     
+
+            <%= f.hidden_field :receipt, :value => false %>
+            <%= f.submit "Done!", class: "btn-small btn-inverse" %> 
+
+          <% end %>
 
         <% end %>
 
-<%= form_for feed_item do |f| %>
+        <%= form_for feed_item do |f| %>
      
 
-        <%= f.hidden_field :receipt, :value => false %>
-        <%= f.submit "NO receipt", class: "btn btn-inverse" %> 
+          <%= f.hidden_field :driver_id, :value => nil %>
+          <%= f.submit "Stop!", class: "btn-small btn-danger" %> 
 
         <% end %>
         
-      </ul>
-    </li><br>
+      <% else %>
 
-     <%= form_for feed_item do |f| %>
-     
+      <% if current_user.driver_run.count >= 3 %>
 
-        <%= f.hidden_field :driver_id, :value => nil %>
-        <%= f.submit "Stop!", class: "btn-small btn-danger" %> 
+         Please finish a run!
 
-        <% end %>
+         <br>
+         <br>
 
-        <% else %>
-
-     <%= form_for feed_item do |f| %>
-     
-
-        <%= f.hidden_field :receipt, :value => false %>
-        <%= f.submit "Done!", class: "btn-small btn-inverse" %> 
-
-        <% end %>
-
-        <%= form_for feed_item do |f| %>
-     
-
-        <%= f.hidden_field :driver_id, :value => nil %>
-        <%= f.submit "Stop!", class: "btn-small btn-danger" %> 
-
-        <% end %>
-        <% end %>
-
-        <% else %>
-
-        <% if current_user.driver_run.count >= 3 %>
-
-        <span class="content"> Please finish a run!</span><br><br>
-        <% else %>
+    <% else %>
 
      <%= form_for feed_item do |f| %>
      
@@ -210,4 +209,3 @@
   <% end %>
 <% end %>
 
-</li>
