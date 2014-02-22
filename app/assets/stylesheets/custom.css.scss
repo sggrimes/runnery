@@ -1,8 +1,8 @@
 @import "bootstrap";
 
 
-
 /* mixins, variables, etc. */
+
 
 $grayMediumLight: #eaeaea;
 
@@ -12,7 +12,13 @@ $grayMediumLight: #eaeaea;
   box-sizing: border-box;
 }
 
+
 /* universal */
+
+* {
+	font-style: italic;
+	font-family: "Courier New"
+}
 
 html {
 	overflow-y:scroll;
@@ -49,11 +55,6 @@ td {
 
 		width: 250px;
 	}
-}
-
-* {
-	font-style: italic;
-	font-family: "Courier New"
 }
 
 
@@ -214,10 +215,14 @@ input {
 }
 
 #error_explanation {
+
   color: red;
+
   ul {
+
     list-style: none;
     margin: 0 0 18px 0;
+
   }
 }
 

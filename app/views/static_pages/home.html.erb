@@ -1,5 +1,6 @@
 <%= render "shared/javascript_headers" %>
 
+<%# 
 <script>
   navigator.geolocation.getCurrentPosition(GeoL);
 
@@ -11,70 +12,76 @@
     }
 
 </script>
+%>
 
 <% provide(:title, 'Home') %>
 
 <% if signed_in? %>
-  <% if !driver? %>
+  <% if driver? %>
+
+    <div class="span4 pull-left">
+
+      <h3 class="span2">Waiting:</h3>
+
+      <row class="span1">
+
+        <%= form_for @location do |f| %>
+<%#
+          <%= f.hidden_field :lat, :id => 'lat'%>
+<%#       
+          <%= f.hidden_field :long, :id => 'long' %>
+
+          <%= f.submit "Locate", 
+                class: "btn btn-small btn-info", 
+                :onclick => "GeoL()" %>
+                    
+        <% end %>
+
+      </row>
+
+      <br>
+      <br>
+        
+        <%= render 'shared/feed' %>
+
+    </div>
+    <div class= "pull-right" style='width: 500px;'>
+
+      <h3>Restaurants Map:</h3>
+
+      <div  id="map" style='width: 500px; height: 600px;'></div>
+
+    </div>
+
+      <%= render 'shared/gmap_script' %>
+
+    <% else %>
 
     <div class="span4">
 
       <h3>Post Order:</h3>
+
         <br>
+
       <%= render 'shared/order_form'%>
          
     </div>
     <div class="span4 pull-right">
 
       <h3>Waiting:</h3>
+
         <br>
+        
       <%= render 'shared/feed' %>
 
     </div>
-
-    <% end %>
-    <% if driver? %>
-
-      <div class="span4 pull-left">
-
-        <h3 class="span2">Waiting:</h3>
-
-        <row class="span1">
-
-            <%= form_for @location do |f| %>
-
-              <%= f.hidden_field :lat, :id => 'lat'%>
-        
-              <%= f.hidden_field :long, :id => 'long' %>
-
-              <%= f.submit "Locate", 
-                    class: "btn btn-small btn-info", :onclick => "GeoL()" %>
-
-            <% end %>
-
-        </row>
-
-        <br>
-        <br>
-        
-        <%= render 'shared/feed' %>
-
-      </div>
-      <div class= "pull-right" style='width: 500px;'>
-
-        <h3>Restaurants Map:</h3>
-        <div  id="map" style='width: 500px; height: 600px;'></div>
-
-      </div>
-
-      <%= render 'shared/gmap_script' %>
-
-    <% end %>
-    <% else %>
+    
+  <% end %>
+  <% else %>
 
 	   <%= render 'shared/sign_in' %>
 
-    <% end %>
+<% end %>
 
 			
 
