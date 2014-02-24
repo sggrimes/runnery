@@ -37,9 +37,9 @@ class UsersController < ApplicationController
     @user = User.find_by(params[:id])
 
     if driver?
-      @feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 10).reorder("created_at DESC")
+      @feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 3).reorder("created_at DESC")
     else
-      @feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 10).reorder("created_at DESC")
+      @feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 3).reorder("created_at DESC")
     end
 
     @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|

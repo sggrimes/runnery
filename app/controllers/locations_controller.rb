@@ -1,9 +1,4 @@
 class LocationsController < ApplicationController
-  def index
-  end
-
-  def show
-  end
 
   def new
     @location = Location.new
@@ -22,10 +17,7 @@ class LocationsController < ApplicationController
     @location.update_attributes(location_params)
     redirect_to root_path
   end
-
-  def destroy
-  end
-
+  
    private
 
     def location_params

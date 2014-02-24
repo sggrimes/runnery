@@ -2,7 +2,6 @@
 
 <html>
 	<head>
-
   		<title><%= full_title(yield(:title)) %></title>
 
   	  	<%= stylesheet_link_tag "application", media: "all", "data-                     turbolinks-track" => true %>
@@ -45,8 +44,8 @@
 			<%end%>
 
 			<div class = "container">
-			<% if signed_in? %>
-
+				
+				<% if signed_in? %>
 
 				<h3>Orders:</h3>
 
