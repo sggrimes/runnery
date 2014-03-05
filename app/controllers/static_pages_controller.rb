@@ -8,7 +8,12 @@ class StaticPagesController < ApplicationController
       @feed_items = current_user.restaurant_wait.paginate(page: params[:page], :per_page => 3)
     
       if driver?
-        @location = current_user.build_location
+        if current_user.location.nil?
+        @location = current_user.create_location(location_params)
+        else
+        @location = current_user.location
+        @location.update_attributes(location_params)
+        end
 
         @feed_items = current_user.driver_wait.paginate(page: params[:page], :per_page => 3)
 
@@ -26,6 +31,11 @@ class StaticPagesController < ApplicationController
   def site_info
   end
 
+  private
+
+    def location_params
+      params.require(:location).permit(:lat, :lng, :user_id) if params[:location]
+    end
 end
 
 

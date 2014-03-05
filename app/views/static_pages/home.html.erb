@@ -1,18 +1,19 @@
 <%= render "shared/javascript_headers" %>
 
-<%# 
-<script>
-  navigator.geolocation.getCurrentPosition(GeoL);
+<% if signed_in? && driver? %>
+<script type="text/javascript">
 
-  function GeoL(position) {
+   $(document).ready(function(){ navigator.geolocation.getCurrentPosition(
 
-    document.getElementById('lat').value = position.coords.latitude
-    document.getElementById('long').value = position.coords.longitude
-                    
-    }
+        function(pos){
+          $("#latitude").val(pos.coords.latitude);
+          $("#longitude").val(pos.coords.longitude);
+
+  });
+ });     
 
 </script>
-%>
+<% end %>
 
 <% provide(:title, 'Home') %>
 
@@ -25,15 +26,15 @@
 
       <row class="span1">
 
-        <%= form_for @location do |f| %>
-<%#
-          <%= f.hidden_field :lat, :id => 'lat'%>
-<%#       
-          <%= f.hidden_field :long, :id => 'long' %>
+       <%= form_for @location do |f| %>
+
+        
+          <%= f.hidden_field :lat, :id => "latitude" %>
+       
+          <%= f.hidden_field :lng, :id => "longitude" %>
 
           <%= f.submit "Locate", 
-                class: "btn btn-small btn-info", 
-                :onclick => "GeoL()" %>
+                class: "btn btn-small btn-info" %>
                     
         <% end %>
 

@@ -3,7 +3,7 @@ Runnery::Application.routes.draw do
  resources :users
  resources :sessions, only: [:new, :create, :destroy]
  resources :orders, only: [:create,:destroy,:update]
- resources :locations, only: [:create,:update]
+ resources :locations, only: [:create,:destroy,:update]
 
  root 'static_pages#home'
  

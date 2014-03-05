@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :orders, dependent: :destroy
-  has_one :location
+  has_one :location, dependent: :destroy
+
 
 	validates :name, presence: true, length: { maximum: 50 }
 	VALID_PHONE_REGEX = /(\d{10})/
@@ -45,14 +46,11 @@ class User < ActiveRecord::Base
 
 
   def driver_wait
-
-    #lat = Location.where(:user_id => id)
-                  #.pluck(:lat)
-    #long = Location.where(:user_id => id)
-                  #.pluck(:long)
+    lat = Location.where(:user_id => id).pluck(:lat)
+    long = Location.where(:user_id => id).pluck(:lng)
 
     Order.where(:driver_id => nil)
-         #.near([lat,long], 1)
+         .near([lat.shift, long.shift], 1)
 
   end
 

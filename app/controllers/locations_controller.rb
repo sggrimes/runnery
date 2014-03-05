@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+  
 
   def new
     @location = Location.new
@@ -8,19 +9,24 @@ class LocationsController < ApplicationController
   end
 
   def create
-    @location = Location.new(location_params)
+    current_user.create_location(location_params)
     redirect_to root_path
   end
 
   def update
-    @location = Location.find_by(params[:id])
-    @location.update_attributes(location_params)
-    redirect_to root_path
+     @location = current_user.location
+     @location.update_attributes(location_params)
+     redirect_to root_path
   end
-  
+
+   def destroy
+    Location.find(params[:id]).destroy
+    redirect_to root_url
+   end
+
    private
 
     def location_params
-      params.require(:location).permit(:lat, :long, :user_id) if params[:location]
+      params.require(:location).permit(:lat, :lng, :user_id) if params[:location]
     end
 end
