@@ -48,8 +48,8 @@ class OrdersController < ApplicationController
       else
       end
       end
-      redirect_to root_url
      end
+     redirect_to root_url
     end
   end
 
