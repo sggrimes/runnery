@@ -46,10 +46,10 @@ class OrdersController < ApplicationController
         flash[:error] = "Order stopped!"
         redirect_to running_path
       else
+      end
+      end
       redirect_to root_url
-      end
-      end
-    end
+     end
     end
   end
 
