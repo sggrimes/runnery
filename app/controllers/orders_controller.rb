@@ -34,22 +34,18 @@ class OrdersController < ApplicationController
     if !@feed_item.running
      if @feed_item.update(order_params)
         flash[:success] = "Order Running!"
-        redirect_to running_path
-     end
+      redirect_to running_path
+    end
     else
-     if @feed_item.update(order_params)
-      if !@feed_item.receipt.nil?
+      if @feed_item.update(order_params)
+        if @feed_item.driver_id != nil
         flash[:success] = "Order Done!"
-        redirect_to done_path 
-      else
-      if @feed_item.driver_id.nil?
+        redirect_to done_path
+        else
         flash[:error] = "Order stopped!"
         redirect_to running_path
-      else
+        end
       end
-      end
-     end
-     redirect_to root_url
     end
   end
 
@@ -60,6 +56,7 @@ class OrdersController < ApplicationController
   
 
   private
+  
     def order_params
       params.require(:order).permit(:address, :phone, :surcharge, :user_id, :pay_type, :driver_id, :receipt, :redeemed)
     end
