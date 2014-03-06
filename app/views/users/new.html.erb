@@ -9,7 +9,9 @@
   	
     <%= f.label :user_type, "Please choose:" %>
     <%= f.select :user_type, [["Driver", true],["Restaurant", false]] %>
+
 <div class="span4">
+    <br>
     <%= f.label :name %>
     <%= f.text_field :name %>
 
@@ -17,7 +19,7 @@
     <%= f.text_field :phone, placeholder: "8885551234" %>
  
     <%= f.label :address, "Restaurant address" %>
-    <%= f.text_area :address, placeholder: "Full restaurant address--not required for drivers." %>
+    <%= f.text_area :address, placeholder: "FULL RESTAURANT ADDRESS--drivers ignore" %>
  
     <%= f.label :password %>
     <%= f.password_field :password, placeholder: "6 char min" %>
