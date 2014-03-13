@@ -26,7 +26,7 @@ html {
 
 body {
 
-    background-image: image-url("cityscape.jpg");
+    background-image: url(image_path('cityscape.jpg'));
 	padding-top: 50px;
 }
 
