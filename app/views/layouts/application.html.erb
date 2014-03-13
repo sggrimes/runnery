@@ -14,13 +14,13 @@
 
 	</head>
 
-	<body>
+	<body style="background-color:transparent;">
 
 		<%= render 'layouts/header' %>
 
 		<div class="container">
 
-			<%= link_to image_tag("delivery.gif", alt: "Delivery"),   root_path, id: "image" %>
+			<%= link_to image_tag("delivery.gif", alt: "Delivery", :style => "opacity:0.6;"),   root_path, id: "image" %>
 
 			<% if !signed_in? %>	
 
@@ -33,17 +33,15 @@
 		 	<% end %>
 			
 		</div> 
-	
-		<div class= "hero-unit">
-			
+
+			<div class = "container">
+
 			<% flash.each do |key, value| %>
 
         		<%= content_tag(:div, value, 
         			class: "alert alert-#{key}") %>
 	
 			<%end%>
-
-			<div class = "container">
 				
 				<% if signed_in? %>
 
@@ -58,8 +56,6 @@
 			<%= yield %>
 
 			</div>
-
-		</div>
 
 		<%= render 'layouts/footer' %>
 
