@@ -7,8 +7,8 @@ ruby '1.9.3'
 	gem 'bcrypt-ruby'
 	gem 'will_paginate'
 	gem 'bootstrap-will_paginate'
-	
-	
+
+
 
 group :development, :test do
 	gem 'rspec-rails', '2.13.1'
@@ -21,7 +21,7 @@ group :test do
 	gem 'factory_girl_rails'
 end
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
@@ -53,7 +53,7 @@ end
 
 	gem 'geocoder'
 	gem 'gmaps4rails'
-	
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
