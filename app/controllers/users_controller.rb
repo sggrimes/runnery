@@ -77,8 +77,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
      if @user.update(user_params)
      flash[:success] = "User Register Updated!"
-     end
-    redirect_to @user
+     redirect_to @user
+     else
+     redirect_to edit_user_path
+   end
   end
 
   def destroy
