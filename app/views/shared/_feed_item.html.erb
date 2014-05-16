@@ -1,4 +1,5 @@
-<% if !feed_item.running %>
+<div style="font-family: Courier New; background: rgba(172,228,252,.5)">
+  <% if !feed_item.running %>
   <% if driver? %>
 
        <%= feed_item.origin_address %>
@@ -85,10 +86,7 @@
 
 
 
-
-
-<s>$</s>
-
+<column style="font-family: new courier">$</column>
 <%= feed_item.surcharge %>
 
   <br>
@@ -100,11 +98,9 @@
     
 <%= time_ago_in_words(feed_item.created_at) %> ago.
 
-  <br>
-  <br>
+</div>
 
-
-  
+ <br>  
 
 <% if !feed_item.running %>
   <% if driver? %>
@@ -220,6 +216,7 @@
                 title: feed_item.user_id  %>
 
 <% end %>
+
 
 
 

@@ -1,21 +1,21 @@
 <% if !driver? %>
 <div class="stats">
   <a href="/" >
-    <strong id="waiting" class="stat">
+    <div id="waiting" class="stat">
       <%= current_user.restaurant_wait.count %>
-    </strong>
+    </div>
     Waiting
   </a>
   <a href="<%= running_path %>">
-    <strong id="running" class="stat">
+    <div id="running" class="stat">
       <%= current_user.restaurant_run.count %>
-    </strong>
+    </div>
     Running
   </a>
   <a href="<%= done_path %>">
-    <strong id="done" class="stat">
+    <div id="done" class="stat">
       <%= current_user.restaurant_done.count %>
-    </strong>
+    </div>
     Done
   </a>
 </div>

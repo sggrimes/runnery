@@ -1,9 +1,9 @@
-<footer class="footer">
+<footer class="footer" style="background-color: black">
  
   <nav>
     <div class="container">
     <ul class="pull-left">
-      <li><%= link_to "Site Info",   site_info_path %></li>
+      <li><%= link_to "Site Info", site_info_path %></li>
       <% if signed_in? %>
       <li><%= link_to "Edit Register", edit_user_path(current_user) %></li>
       <li><%= link_to "Sign out", signout_path, method: "delete" %></li>

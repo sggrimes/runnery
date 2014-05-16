@@ -17,7 +17,8 @@ $grayMediumLight: #eaeaea;
 
 * {
 	font-style: italic;
-	font-family: "Courier New"
+	font-family: "Courier New";
+	color:black;
 }
 
 html {
@@ -69,11 +70,20 @@ h1, h2, h3, h4, h5, h6 {
 #map img { max-width: none; }
 
 #image { 
+
 	float: left;
 	padding-top: 15px;
 	padding-bottom: 10px;
 	padding-right: 25px;
+
+	&:hover {
+
+	background-color: rgba(172,228,252,.5);
+
+	}
+
 }
+	
 
 h1 {
 
@@ -82,6 +92,7 @@ h1 {
 }
 
 h2 {
+
 	font-size: 2em;
 	margin-bottom: 25px;
 	text-align: left;
@@ -108,8 +119,10 @@ div{
 }
 
 .span4 {
+
 	margin-bottom: 10px;
 	margin-right: 100px;
+
 	}
 }
 
@@ -137,6 +150,7 @@ list-style-type: none;
 
 
 #logo {
+
 	float: left;
 	margin-right: 10px;
 	font-size: 2.5em;
@@ -149,7 +163,7 @@ list-style-type: none;
 
 
 	&:hover {
-		color: white;
+		color: none;
 		text-decoration: none;
 	}
 }
@@ -158,21 +172,22 @@ list-style-type: none;
 /* footer */
 
 footer {
+
 	margin-top: 45px;
 	padding-top: 5px;
-	border-top: 1px solid $grayMediumLight;
-	color: white;	
+		
 
 	ul { 
 			list-style: none;
-
+			color: white;
 
 	li {
 		float: left;
 		margin-left: 10px;
+		
 		}
 
-		a:visited{ color: #FFF}
+		a:visited{ color: white}
 	}
 }
 
@@ -238,18 +253,19 @@ input {
   a {
     float: left;
     padding: 0 10px;
-    border-left: 1px solid $grayLighter;
-    color: white;
+    border-left: 1px solid black;
     &:first-child {
       padding-left: 0;
       border: 0;
+      color:black;
     }
     &:hover {
       text-decoration: none;
-      color: $blue;
+      color:white;
     }
   }
   strong {
+  	color:black;
     display: block;
   }
 }
