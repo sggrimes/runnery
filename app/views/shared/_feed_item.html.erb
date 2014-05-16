@@ -129,6 +129,8 @@
   <% if driver? && !feed_item.done %>
     <% if feed_item.paid_card %>
 
+<box style="float:left; margin-right:50px">
+
       <li class="dropdown" id="done">
         
         <a href="#" class="btn btn-small 
@@ -161,9 +163,11 @@
             
       </li>
 
-      <br>
+    </box>
 
     <% else %>
+
+<box style="float:left; margin-right:50px">
 
         <%= form_for feed_item do |f| %>
 
@@ -173,7 +177,11 @@
 
         <% end %>
 
+      </box>
+
     <% end %>
+
+    <box>
 
       <%= form_for feed_item do |f| %>
      
@@ -182,6 +190,8 @@
         <%= f.submit "Stop!", class: "btn-small btn-danger" %> 
 
       <% end %>
+
+    </box>
 
   <% end %>
 <% end %>
