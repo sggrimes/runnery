@@ -12,13 +12,13 @@ ruby '1.9.3'
 
 group :development, :test do
 	gem 'rspec-rails', '2.13.1'
+	gem 'factory_girl_rails'
 	gem 'sqlite3'
 end
 
 group :test do
 	gem 'selenium-webdriver'
 	gem 'capybara'
-	gem 'factory_girl_rails'
 end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

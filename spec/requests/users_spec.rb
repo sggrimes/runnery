@@ -1,11 +1,21 @@
 require 'spec_helper'
 
 describe "Users" do
-  describe "GET /users" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get users_path
-      response.status.should be(200)
-    end
-  end
+  
+  	subject { page }
+
+  	describe "Registration page" do
+  		let(:user) { FactoryGirl.create(:user) }
+  		before { visit users_path(user) }
+
+  		it { should have_content(user.name) }
+  		it { should have_title('User Info')}
+  	end
+
+  	describe "signup page" do
+  		before { visit signup_path }
+
+  		it { should have_content('Register!') }
+  		it { should have_title(full_title('Register')) }
+  	end
 end

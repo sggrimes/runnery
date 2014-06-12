@@ -6,7 +6,7 @@ Runnery::Application.routes.draw do
  resources :locations, only: [:create,:destroy,:update]
 
  root 'static_pages#home'
- 
+
  match '/running',  to: 'users#running',  via: 'get'
  match '/done',  to: 'users#done_today',  via: 'get'
  match '/all_done',  to: 'users#all_done',  via: 'get'
