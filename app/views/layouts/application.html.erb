@@ -19,6 +19,7 @@
 
 		<%= render 'layouts/header' %>
 
+	<div class="wrapper">
 		<div class="container">
 
 			<%= link_to image_tag("delivery.png", alt: "Delivery"), root_path, id: "image" %>
@@ -57,9 +58,7 @@
 			<%= yield %>
 
 			</div>
-
-			<br>
-			<br>
+		</div>
 
 		<%= render 'layouts/footer' %>
 
