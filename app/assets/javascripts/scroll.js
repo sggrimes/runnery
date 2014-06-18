@@ -10,7 +10,7 @@ function init (){
 function showHideNav (e){
 
 	var wrapperTop = $(".wrapper").position().top + $(".wrapper").height();
-	var scrollPos = wrapperTop - 650;
+	var scrollPos = wrapperTop - 700;
 	var top = $(window).scrollTop();
 
 	if(top < scrollPos){
