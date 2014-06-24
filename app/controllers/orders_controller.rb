@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
 
   def update
     @feed_item = Order.find(params[:id])
-    if !@feed_item.update(params[:driver_id] == !nil)
+    if !@feed_item.update(params[:driver_id] != nil)
       flash[:error] = "Sorry. Order already running."
       redirect_to root_path and return
     end
