@@ -3,10 +3,10 @@
   <nav>
     <div class="container">
     <ul class="pull-left" style="margin: 0 0 0 0px">
-      <li style="margin: 0 0 0 0px;"><%= link_to "Site Info", site_info_path %></li>
+      <li style="margin: 0 0 0 0px;"><%= link_to "Site Info", site_info_path, style: "color:white" %></li>
       <% if signed_in? %><li style="color:white;"> | </li>
-      <li><%= link_to "Edit Register", edit_user_path(current_user) %></li><li style="color:white;"> | </li>
-      <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+      <li><%= link_to "Edit Register", edit_user_path(current_user), style: "color:white" %></li><li style="color:white;"> | </li>
+      <li><%= link_to "Sign out", signout_path, method: "delete", style: "color:white" %></li>
       <% end %>
     </ul>
   </div>

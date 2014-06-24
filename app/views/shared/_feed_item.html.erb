@@ -2,11 +2,11 @@
   <% if !feed_item.running %>
   <% if driver? %>
 
-       <%= feed_item.origin_address %>
+       <b>P: </b><%= feed_item.origin_address %>
 
        <br>
 
-       <%= feed_item.address %>
+       <b>D: </b><%= feed_item.address %>
 
        <br>
 
@@ -31,11 +31,11 @@
         <a href="#" class="dropdown-toggle" 
             data-toggle="dropdown">
 
-            <%= feed_item.origin_address %>
+            <b>P: </b><%= feed_item.origin_address %>
 
         </a>
 
-          <ul class="dropdown-menu">              
+          <ul class="dropdown-menu" style="color:rgb(172,228,252,.5)">              
 
             <%= feed_item.origin_phone %>
 
@@ -54,7 +54,7 @@
 
           </a>
 
-            <ul class="dropdown-menu">              
+            <ul class="dropdown-menu" style="color:rgb(172,228,252,.5)">              
 
             <%= feed_item.driver_phone %>
 
@@ -69,11 +69,15 @@
           <a href="#" class="dropdown-toggle" 
              data-toggle="dropdown">
 
+                <% if driver? %>
+                  <b>D:</b>
+                <% end %>
+
                 <%= feed_item.address %>
 
           </a>
 
-            <ul class="dropdown-menu">              
+            <ul class="dropdown-menu" style="color:rgb(172,228,252,.5)">              
 
               <%= feed_item.phone %>
 
@@ -141,7 +145,7 @@
 
         </a>
 
-        <ul class="dropdown-menu"> 
+        <ul class="dropdown-menu" style="color:rgb(172,228,252,.5)"> 
 
           <%= form_for feed_item do |f| %>
 
