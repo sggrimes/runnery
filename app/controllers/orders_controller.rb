@@ -31,21 +31,23 @@ class OrdersController < ApplicationController
 
   def update
     @feed_item = Order.find(params[:id])
-    if @feed_item.update(order_params) 
-      if !@feed_item.running
-        flash[:error] = "Order stopped!"
-        redirect_to running_path and return
-      elsif @feed_item.running && !@feed_item.done
-        flash[:success] = "Order Running!"
-        redirect_to running_path and return
-      end
-    end
-    if @feed_item.update(order_params) && @feed_item.running && !@feed_item.done
+    if !@feed_item.update(params[:driver_id] == !nil)
       flash[:error] = "Sorry. Order already running."
-      redirect_to root_path
-    elsif @feed_item.done
+      redirect_to root_path and return
+    end
+    if @feed_item.update(order_params)
+      if @feed_item.running && !@feed_item.done
+      flash[:success] = "Order Running!"
+      redirect_to running_path 
+      end
+      if !@feed_item.running
+      flash[:error] = "Order stopped!"
+      redirect_to running_path
+      end
+      if @feed_item.done
       flash[:success] = "Order Done!"
       redirect_to done_path
+      end
     end
   end
 
