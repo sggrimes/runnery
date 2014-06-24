@@ -1,25 +1,32 @@
 <% provide(:title, 'Register') %>
 <div class="container">
 
-<h2>Register!</h2>
+<h3>Register!</h3>
 
-  <div class="span">
-    <%= form_for(@user) do |f| %>
+<br>
 
-  	
-    <%= f.label :user_type, "Please choose:" %>
+  <%= form_for(@user) do |f| %>
+
+   <div style="width:130px;">
+
+    
+    <%= f.label :user_type %>
     <%= f.select :user_type, [["Driver", true],["Restaurant", false]] %>
 
-<div class="span4">
     <br>
+    <br>
+
+  </div>
+
+  <div class="span4" style="margin: 0 0 0 0px">
     <%= f.label :name %>
     <%= f.text_field :name %>
 
     <%= f.label :phone %>
     <%= f.text_field :phone, placeholder: "8885551234" %>
  
-    <%= f.label :address, "Restaurant address" %>
-    <%= f.text_area :address, placeholder: "FULL RESTAURANT ADDRESS--drivers ignore" %>
+    <%= f.label :address, "Restaurant Address", style: "display:none" %>
+    <%= f.text_area :address, placeholder: "Full restaurant address", style: "display:none" %>
  
     <%= f.label :password %>
     <%= f.password_field :password, placeholder: "6 char min" %>
@@ -27,14 +34,17 @@
     <%= f.label :password_confirmation, "Confirm password" %>
     <%= f.password_field :password_confirmation %>
 
-
-  </div>
-
+  <br>
+  <br>
   
     <%= f.submit "Start!", class: "btn-large btn-inverse" %>
 
-</div>
+    <br>
+  <br>
 
+    <%= link_to 'Destroy', @user, method: :delete, data: { confirm:          'Are you sure?' } %>
+  </div>
+  
 <% end %>
 
 </div>

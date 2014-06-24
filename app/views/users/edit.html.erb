@@ -1,4 +1,4 @@
-<% provide(:title, 'Update User Register') %>
+<% provide(:title, 'Edit Register') %>
 <div class="container">
 <h3>Edit Register</h3>
 
@@ -14,22 +14,35 @@
       </ul>
     </div>
   <% end %>
-<div class="container">
 
-  <div class="span offset">
-
+  <div style="width:130px;">
   	
     <%= f.label :user_type %>
     <%= f.select :user_type, [["Driver", true],["Restaurant", false]] %>
-<div class="span4">
+
+    <br>
+    <br>
+
+  </div>
+
+  <div class="span4" style="margin: 0 0 0 0px">
     <%= f.label :name %>
     <%= f.text_field :name %>
 
     <%= f.label :phone %>
     <%= f.text_field :phone, placeholder: "8885551234" %>
+
+    <% if signed_in? && driver? %>
  
-    <%= f.label :address %>
-    <%= f.text_area :address, placeholder: "Full restaurant address--not required for drivers." %>
+    <%= f.label :address, "Restaurant Address", style: "display:none" %>
+    <%= f.text_area :address, placeholder: "Full restaurant address", style: "display:none" %>
+
+    <% elsif signed_in? && !driver? %>
+
+    <%= f.label :address, "Restaurant Address" %>
+    <%= f.text_area :address, placeholder: "Full restaurant address" %>
+
+    <% end %>
  
     <%= f.label :password %>
     <%= f.password_field :password, placeholder: "6 char min" %>
@@ -37,20 +50,19 @@
     <%= f.label :password_confirmation, "Confirm password" %>
     <%= f.password_field :password_confirmation %>
 
-
-  </div>
-
+  <br>
+  <br>
   
     <%= f.submit "Edit!", class: "btn-large btn-inverse" %>
-	<br><br>
+
+	<br>
+  <br>
+
     <%= link_to 'Destroy', @user, method: :delete, data: { confirm:          'Are you sure?' } %>
-</div>
-
-
-
+  </div>
+  
 <% end %>
 
-</div>
 </div>
 
 

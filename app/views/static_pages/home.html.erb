@@ -8,9 +8,9 @@
         function(pos){
           $("#latitude").val(pos.coords.latitude);
           $("#longitude").val(pos.coords.longitude);
-
+                   
   });
- });     
+ });   
 
 </script>
 <% end %>
@@ -24,7 +24,7 @@
 
       <h3 class="span2" style="margin-left:0px">Waiting:</h3>
 
-      <column class="span1" style="margin-left:95px; margin-top:5px">
+      <column class="span1" style="margin-left:95px; margin-top:10px">
 
        <%= form_for @location do |f| %>
 
@@ -34,7 +34,7 @@
           <%= f.hidden_field :lng, :id => "longitude" %>
 
           <%= f.submit "Locate", 
-                class: "btn btn-small btn-info" %>
+                class: "btn btn-info" %>
                     
         <% end %>
 
@@ -60,9 +60,9 @@
 
     <% else %>
 
-    <div class="span4">
+    <div class="span4" style="margin: 0 0 0 0px;">
 
-      <h3>Post Order:</h3>
+      <h3>Post Delivery:</h3>
 
         <br>
 

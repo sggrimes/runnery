@@ -1,10 +1,10 @@
 <% provide(:title, "Sign in") %>
 
-<div class="container">
-<h3>Please, try again.</h3>
+<h3>Please sign in.</h3>
 
 
-  <div class="span4 offset">
+  <div class="span4" style="margin: 0 0 0 0px;">
+
     <%= form_for(:session, url: sessions_path) do |f| %>
 
       <%= f.label :phone %>
@@ -13,9 +13,11 @@
       <%= f.label :password %>
       <%= f.password_field :password %>
 
+      <br>
+      <br>
+
       <%= f.submit "Sign in!", class: "btn btn-large btn-inverse" %>
     <% end %>
 
     <%= link_to "Register!", signup_path, class: "btn" %>
   </div>
-</div>

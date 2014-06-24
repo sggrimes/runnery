@@ -1,5 +1,4 @@
-<div class="container">
-  		<div class="span4">
+  	<div class="span4" style="margin:0 0 0 0px;">
 
     	<%= form_for(:session, url: sessions_path) do |f| %>
 
@@ -8,6 +7,9 @@
 
       	<%= f.label :password %>
       	<%= f.password_field :password %>
+
+        <br>
+        <br>
 
       	<%= f.submit "Sign in!", class: "btn btn-large btn-inverse" %>
 
