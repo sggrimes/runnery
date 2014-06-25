@@ -1,25 +1,21 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
-    <div class="navbar-inner">
+	<div class="navbar-inner" style="height:45px;width:auto">
 
     	<% if signed_in? %>
 
 	    	<center style="margin-top:10px;">
 
-			  <col align="left">
-			    <%= link_to "Waiting", root_path, style: "color:white; font-size:250%;" %>
-			  </col>
+	    		
 
-			  <span style="color:white; font-size:250%;">|</span>
-
-			  <col align="center">
-			    <%= link_to "Running", running_path, style: "color:white; font-size:250%;"%>
-			  </col>
-
-			  <span style="color:white; font-size:250%;">|</span>
-
-			  <col align="right">
-			    <%= link_to "Done", done_path, style: "color:white; font-size:250%;" %>
-			  </col>
+					  <%= link_to "Waiting", root_path, style: "color:white; font-size:400%;" %> 
+					  <span style="with:auto;font-size:400%; color:white;">|
+					  </span>
+					  <%= link_to "Running", running_path, style: "color:white; font-size:400%;"%> 
+					  <span style="font-size:400%; color:white;">|
+					  </span>
+					  <%= link_to "Done", done_path, style: "color:white; font-size:400%;" %>
+			    
+			  	
 
 			</center>
 
