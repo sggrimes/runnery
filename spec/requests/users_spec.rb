@@ -4,11 +4,13 @@ describe "Users" do
   
   	subject { page }
 
-  	describe "Registration page" do
+  	describe "User info page" do
   		let(:user) { FactoryGirl.create(:user) }
   		before { visit users_path(user) }
 
   		it { should have_content(user.name) }
+      it { should have_content(user.phone) }
+      it { should have_content(user.user_type) }
   		it { should have_title('User Info')}
   	end
 

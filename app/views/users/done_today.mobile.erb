@@ -1,0 +1,14 @@
+<%= render "shared/javascript_headers" %>
+
+<% provide(:title, 'Done Today') %>
+    
+  <div class="span4" style="margin:0 0 0 0px; width:100%">
+
+    <h3>Done: Today</h3> 
+
+    <h4>Go to: <%= link_to 'All Done', all_done_path %></h4>
+
+    <%= render 'shared/feed' %>
+    
+	</div>
+	

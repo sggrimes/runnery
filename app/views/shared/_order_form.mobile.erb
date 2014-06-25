@@ -1,0 +1,21 @@
+<%= form_for(@order) do |f| %>
+  <div class="field">
+
+    <%= f.label :address %>
+    <%= f.text_area :address, placeholder: "Delivery address" %>
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone, placeholder: "8885551234" %>
+
+    <%= f.label :surcharge %>
+    <%= f.text_field :surcharge, value: "3.00" %>
+
+    <%= f.label :pay_type %>
+    <%= f.select :pay_type, [["Cash up-front", true],["Paid with Card", false]] %>
+
+  </div>
+
+  <br>
+  
+  <%= f.submit "Post!", class: "btn btn-large btn-inverse" %>
+<% end %>

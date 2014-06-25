@@ -1,0 +1,27 @@
+<br>
+
+<h1 style="font-family: Courier New; font-style:italic; margin:0; padding:0;"> Welcome !!! </h1>
+
+<br>
+
+<div style="margin:0 0 0 0px; width:100%;">
+
+	<%= form_for(:session, url: sessions_path) do |f| %>
+
+  	<%= f.label :phone %>
+  	<%= f.text_field :phone, placeholder: "8885551234" %>
+
+  	<%= f.label :password %>
+  	<%= f.password_field :password %>
+
+    <br>
+    <br>
+
+  	<%= f.submit "Sign in!", class: "btn btn-large btn-inverse" %>
+
+		<% end %>
+
+    <%= link_to "Register!", signup_path, class: "btn" %>
+
+	</div>
+ </div>

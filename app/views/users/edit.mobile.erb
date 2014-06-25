@@ -1,0 +1,65 @@
+<% provide(:title, 'Edit Register') %>
+<h3>Edit Register</h3>
+
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="width:130px;">
+  	
+    <%= f.label :user_type %>
+    <%= f.select :user_type, [["Driver", true],["Restaurant", false]] %>
+
+    <br>
+    <br>
+
+  </div>
+
+  <div class="span4" style="margin: 0 0 0 0px; width:100%;">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone, placeholder: "8885551234" %>
+
+    <% if signed_in? && driver? %>
+ 
+    <%= f.label :address, "Restaurant Address", style: "display:none" %>
+    <%= f.text_area :address, placeholder: "Full restaurant address", style: "display:none" %>
+
+    <% elsif signed_in? && !driver? %>
+
+    <%= f.label :address, "Restaurant Address" %>
+    <%= f.text_area :address, placeholder: "Full restaurant address" %>
+
+    <% end %>
+ 
+    <%= f.label :password %>
+    <%= f.password_field :password, placeholder: "6 char min" %>
+
+    <%= f.label :password_confirmation, "Confirm password" %>
+    <%= f.password_field :password_confirmation %>
+
+  <br>
+  <br>
+  
+    <%= f.submit "Edit!", class: "btn-large btn-inverse" %>
+
+	<br>
+  <br>
+
+    <%= link_to 'Destroy', @user, method: :delete, data: { confirm:          'Are you sure?' } %>
+  </div>
+  
+<% end %>
+
+

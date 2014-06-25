@@ -1,0 +1,41 @@
+<footer class="navbar navbar-fixed-bottom" 
+  style="background-color: black; height:30px">
+  
+  <center>
+
+    <div class="container" style="margin-top:5px;">
+
+    <col style="margin: 0 0 0 0px;">
+      <%= link_to "Site Info", site_info_path, style: "color:white; font-size:200%;" %>
+    </col>    
+
+    <% if signed_in? %>
+
+      <span style="color:white; font-size:200%;"> | </span>
+
+      <col>
+        <%= link_to "Edit Register", edit_user_path(current_user), style: "color:white; font-size:200%;" %>
+      </col>
+
+      <% end %>
+
+      <span style="color:white; font-size:200%;"> | </span>
+
+      <col>
+        <% if mobile_device? %>
+          <a href="/?mobile=0", style="font-size:200%; color:white;">Full Site</a>
+        <% else %>
+          <a href="/?mobile=1">Mobile Site</a>
+        <% end %>
+      </col>
+
+      <% if signed_in? %>
+
+        <span style="color:white; font-size:200%;"> | </span>
+
+        <col><%= link_to "Sign out", signout_path, method: "delete", style: "color:white; font-size:200%;" %></col>
+
+      <% end %>
+    </div>
+    </center>
+</footer>

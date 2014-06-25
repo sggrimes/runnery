@@ -1,0 +1,46 @@
+<% provide(:title, 'Register') %>
+
+<h3>Register!</h3>
+
+<br>
+
+  <%= form_for(@user) do |f| %>
+
+   <div style="width:130px;">
+
+    
+    <%= f.label :user_type %>
+    <%= f.select :user_type, [["Driver", true],["Restaurant", false]] %>
+
+    <br>
+    <br>
+
+  </div>
+
+  <div class="span4" style="margin: 0 0 0 0px; width:100%;">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :phone %>
+    <%= f.text_field :phone, placeholder: "8885551234" %>
+ 
+    <%= f.label :address, "Restaurant Address", style: "display:none" %>
+    <%= f.text_area :address, placeholder: "Full restaurant address", style: "display:none" %>
+ 
+    <%= f.label :password %>
+    <%= f.password_field :password, placeholder: "6 char min" %>
+
+    <%= f.label :password_confirmation, "Confirm password" %>
+    <%= f.password_field :password_confirmation %>
+
+  <br>
+  <br>
+  
+    <%= f.submit "Start!", class: "btn-large btn-inverse" %>
+
+  </div>
+  
+<% end %>
+
+
+
