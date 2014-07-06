@@ -29,7 +29,7 @@
        <li class="dropdown">
 
         <a href="#" class="dropdown-toggle" 
-            data-toggle="dropdown">
+            data-toggle="dropdown" style="color:black;">
 
             <b>P: </b><%= feed_item.origin_address %>
 
@@ -48,7 +48,7 @@
         <li class="dropdown">
 
           <a href="#" class="dropdown-toggle" 
-            data-toggle="dropdown">
+            data-toggle="dropdown" style="color:black;">
 
             <%= feed_item.driver_name %>
 
@@ -67,7 +67,7 @@
         <li class="dropdown">
 
           <a href="#" class="dropdown-toggle" 
-             data-toggle="dropdown">
+             data-toggle="dropdown" style="color:black;">
 
                 <% if driver? %>
                   <b>D:</b>
@@ -123,7 +123,7 @@
                           :value => current_user.id %>
 
         <%= f.submit "Run!",
-              class: "btn-small btn-success" %> 
+              class: "btn-small btn-success", "data-role" => "button", "data-ajax" => "false", rel: :external %> 
 
       <% end %>
 
@@ -139,7 +139,7 @@
         
         <a href="#" class="btn btn-small 
                 btn-inverse dropdown-menu-toggle" 
-           data-toggle="dropdown">
+           data-toggle="dropdown" style="color:white; width:55px; height: 21px; padding:0; border:0;">
                 
                 Done!
 
@@ -153,7 +153,7 @@
 
             <%= f.hidden_field :receipt, :value => true %>
             
-            <%= f.submit "Receipt", class: "btn btn-inverse", :style => 'opacity:1' %>
+            <%= f.submit "Receipt", class: "btn btn-inverse", :style => 'opacity:1', rel: :external%>
 
           <% end %>
 
@@ -161,7 +161,7 @@
      
             <%= f.hidden_field :receipt, :value => false %>
 
-            <%= f.submit "NO receipt", class: "btn btn-inverse", :style => 'opacity:1' %> 
+            <%= f.submit "NO receipt", class: "btn btn-inverse", :style => 'opacity:1', rel: :external %> 
 
           <% end %>
                   
@@ -179,7 +179,7 @@
 
           <%= f.hidden_field :receipt, :value => false %>
 
-          <%= f.submit "Done!", class: "btn-small btn-inverse" %> 
+          <%= f.submit "Done!", class: "btn-small btn-inverse", rel: :external %> 
 
         <% end %>
 
@@ -193,7 +193,7 @@
      
         <%= f.hidden_field :driver_id, :value => nil %>
 
-        <%= f.submit "Stop!", class: "btn-small btn-danger" %> 
+        <%= f.submit "Stop!", class: "btn-small btn-danger", "data-role"=>"button", rel: :external %> 
 
       <% end %>
 
@@ -212,7 +212,7 @@
 
         <%= f.hidden_field :redeemed, :value => true %>
 
-        <%= f.submit "Receipt!", class: "btn-small btn-warning" %> 
+        <%= f.submit "Receipt!", class: "btn-small btn-warning", rel: :external %> 
 
       <% end %>
 
@@ -228,8 +228,8 @@
    
   <%= button_to "Cancel!", feed_item, class: "btn-danger",
                 method: :delete, 
-                data: { confirm: "Cancel this order?" },
-                title: feed_item.user_id  %>
+                data: { confirm: "Please inform the driver of this cancellation." },
+                title: feed_item.user_id, rel: :external  %>
 
 <% end %>
 

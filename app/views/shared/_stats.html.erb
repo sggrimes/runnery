@@ -1,18 +1,18 @@
 <% if !driver? %>
 <div class="stats">
-  <a href="/" >
+  <a href="/" style="color:black;", rel="external" >
     <div id="waiting" class="stat">
       <%= current_user.restaurant_wait.count %>
     </div>
     Waiting
   </a>
-  <a href="<%= running_path %>">
+  <a href="<%= running_path %>" style="color:black;", rel="external">
     <div id="running" class="stat">
       <%= current_user.restaurant_run.count %>
     </div>
     Running
   </a>
-  <a href="<%= done_path %>">
+  <a href="<%= done_path %>" style="color:black;", rel="external">
     <div id="done" class="stat">
       <%= current_user.restaurant_done.count %>
     </div>
@@ -23,22 +23,22 @@
 <% else %>
 
 <div class="stats">
-  <a href="/" >
-    <strong id="waiting" class="stat">
+  <a href="/" style="color:black;", rel="external">
+    <div id="waiting" class="stat" >
       <%= current_user.driver_wait.count %>
-    </strong>
+    </div>
     Waiting
   </a>
-  <a href="<%= running_path %>">
-    <strong id="running" class="stat">
+  <a href="<%= running_path %>" style="color:black;", rel="external">
+    <div id="running" class="stat">
       <%= current_user.driver_run.count %>
-    </strong>
+    </div>
     Running
   </a>
-  <a href="<%= done_path %>">
-    <strong id="done" class="stat">
+  <a href="<%= done_path %>"  style="color:black;", rel="external">
+    <div id="done" class="stat">
       <%= current_user.driver_done.count %>
-    </strong>
+    </div>
     Done
   </a>
 </div>

@@ -21,13 +21,29 @@ $grayMediumLight: #eaeaea;
 	color:black;
 }
 
+
 html {
 	overflow-y:scroll;
 }
 
 body {
-    background-image:url('cityscape.jpg');
+
+    background-image:image-url('cityscape.jpg');
 	padding-top: 50px;
+
+	.ui-page{
+
+		background: #000;
+		background-image:url('cityscape.jpg');
+		background-size:cover; 
+
+	}
+
+#stat {
+	
+	color:black !important
+}
+
 }
 
 section {
@@ -216,19 +232,13 @@ input, textarea, select, .uneditable-input {
   font-family: "Courier New"
 }
 
-row.span1{
-
-	margin: 5px 0 0 50px;
-
+form.edit_user {
+	
+margin:0;
+height:90px;
+	
 }
 
-form.edit_location {
-
-	width: 10%;
-	margin-top: 5px;
-
-
-}
 
 input {
   height: auto !important;

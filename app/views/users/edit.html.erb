@@ -3,19 +3,9 @@
 <h3>Edit Register</h3>
 
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div style="width:130px;">
+  <div style="width:160px;">
+    <%= render 'shared/error_messages', object: f.object %>
   	
     <%= f.label :user_type %>
     <%= f.select :user_type, [["Driver", true],["Restaurant", false]] %>
@@ -58,7 +48,7 @@
 	<br>
   <br>
 
-    <%= link_to 'Destroy', @user, method: :delete, data: { confirm:          'Are you sure?' } %>
+  
   </div>
   
 <% end %>

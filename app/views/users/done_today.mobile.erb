@@ -2,11 +2,13 @@
 
 <% provide(:title, 'Done Today') %>
     
-  <div class="span4" style="margin:0 0 0 0px; width:100%">
+  <div class="span5" style="margin:0 0 0 0px;">
 
-    <h3>Done: Today</h3> 
+    <h3 class="span3" style="margin-left:0; margin-top:20px">Done: Today</h3> 
 
-    <h4>Go to: <%= link_to 'All Done', all_done_path %></h4>
+  		<%= link_to "Map", dropoffs_path, class: "btn btn-inverse", style: "color:white; margin-top:16px; margin-bottom:0;", rel: :external %>
+
+    <h4>Go to: <%= link_to 'All Done', all_done_path, style: "color:black;", rel: :external %></h4>
 
     <%= render 'shared/feed' %>
     

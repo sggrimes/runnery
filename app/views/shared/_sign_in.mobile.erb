@@ -1,10 +1,10 @@
 <br>
 
-<h1 style="font-family: Courier New; font-style:italic; margin:0; padding:0;"> Welcome !!! </h1>
+<h2 style="font-family: Courier New; font-style:italic; margin:0; padding:0;"> Welcome !!! </h2>
 
 <br>
 
-<div style="margin:0 0 0 0px; width:auto%;">
+<div class="span4" style="margin:0 0 0 0px;">
 
 	<%= form_for(:session, url: sessions_path) do |f| %>
 
@@ -17,11 +17,11 @@
     <br>
     <br>
 
-  	<%= f.submit "Sign in!", class: "btn btn-large btn-inverse" %>
+  	<%= f.submit "Sign in!", class: "btn btn-large btn-inverse", rel: :external %>
 
 		<% end %>
 
-    <%= link_to "Register!", signup_path, class: "btn" %>
+    <%= link_to "Register!", signup_path, class: "btn", rel: :external, style: "color:black" %>
 
 	</div>
  </div>

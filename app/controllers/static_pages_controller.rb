@@ -37,6 +37,44 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def pickups_wait
+    if signed_in? && driver?
+      @order  = current_user.orders.build
+      @user = User.find_by(params[:id])
+      @feed_items = current_user.driver_wait.paginate(page: params[:page], :per_page => 3)
+
+        @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
+      
+          marker.lat feed_item.origin_latitude
+          marker.lng feed_item.origin_longitude
+          marker.infowindow feed_item.origin_address
+
+        
+      end
+    end
+  end
+
+  def dropoffs_wait
+    if signed_in?
+      @order  = current_user.orders.build
+      @user = User.find_by(params[:id])
+      if driver?
+       @feed_items = current_user.driver_wait.paginate(page: params[:page], :per_page => 3)
+      else
+       @feed_items = current_user.restaurant_wait.paginate(page: params[:page], :per_page => 3)
+      end
+
+        @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
+      
+          marker.lat feed_item.latitude
+          marker.lng feed_item.longitude
+          marker.infowindow feed_item.address
+
+        
+      end
+    end
+  end
+
   def site_info
   end
 

@@ -1,4 +1,4 @@
-$("body").ready(init);
+$(document).on("scrollstart", init);
 
 $(window).scroll(showHideNav);
 

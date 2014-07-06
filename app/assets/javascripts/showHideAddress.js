@@ -1,6 +1,6 @@
-$(document).on("page:load",
+$(document).on('pageinit pageshow', 'div:jqmData(role="page"), div:jqmData(role="dialog")', 
 
-function (){
+	function(event){
 
 	$("#user_user_type").change( function(){
 

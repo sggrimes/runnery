@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
+  before_action :admin_user, only: [:index, :destroy]
 
   def index
     @users = User.paginate(page: params[:page])
+    @user = User.find_by(params[:id])
+    if !@user.admin = true
+      redirect_to root_url
+    end
   end
 
   def show
@@ -54,6 +59,42 @@ class UsersController < ApplicationController
    
   end
 
+  def pickups
+    if signed_in? && driver?
+      @user = User.find_by(params[:id])
+      @feed_items = current_user.driver_run.paginate(page: params[:page], :per_page => 3)
+
+        @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
+      
+          marker.lat feed_item.origin_latitude
+          marker.lng feed_item.origin_longitude
+          marker.infowindow feed_item.origin_address
+
+        
+      end
+    end
+  end
+
+  def dropoffs
+    if signed_in?
+      @user = User.find_by(params[:id])
+      if driver?
+       @feed_items = current_user.driver_run.paginate(page: params[:page], :per_page => 3)
+      else
+       @feed_items = current_user.restaurant_run.paginate(page: params[:page], :per_page => 3)
+      end
+
+        @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
+      
+          marker.lat feed_item.latitude
+          marker.lng feed_item.longitude
+          marker.infowindow feed_item.address
+
+        
+      end
+    end
+  end
+
   def new
     @user = User.new
   end
@@ -67,7 +108,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to Runnery!"
-      redirect_to root_url
+      redirect_to @user
     else
       render 'new'
     end
@@ -75,7 +116,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-     if @user.update(user_params)
+     if @user.update_attributes(user_params)
      flash[:success] = "User Register Updated!"
      redirect_to @user
      else
@@ -84,6 +125,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
     User.find(params[:id]).destroy
     flash[:error] = "User deleted."
     redirect_to root_url

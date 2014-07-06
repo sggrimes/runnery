@@ -14,6 +14,10 @@ Runnery::Application.routes.draw do
  match '/signin',  to: 'sessions#new',         via: 'get'
  match '/signout', to: 'sessions#destroy',     via: 'delete'
  match '/site_info', to: 'static_pages#site_info', via: 'get'
+ match '/dropoffs_wait', to: 'static_pages#dropoffs_wait', via: 'get'
+ match '/pickups_wait', to: 'static_pages#pickups_wait', via: 'get'
+ match '/dropoffs',  to: 'users#dropoffs',  via: 'get'
+ match '/pickups',  to: 'users#pickups',  via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

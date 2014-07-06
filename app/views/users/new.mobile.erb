@@ -1,12 +1,13 @@
 <% provide(:title, 'Register') %>
 
-<h3>Register!</h3>
+<h2 style="font-family: Courier New; font-style:italic; margin:0; padding:0;">Register!</h2>
 
 <br>
 
   <%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
 
-   <div style="width:130px;">
+   <div style="width:160px; height:90px;">
 
     
     <%= f.label :user_type %>
@@ -17,7 +18,7 @@
 
   </div>
 
-  <div class="span4" style="margin: 0 0 0 0px; width:100%;">
+  <div class="span4" style="margin: 0 0 0 0px;">
     <%= f.label :name %>
     <%= f.text_field :name %>
 
@@ -36,7 +37,7 @@
   <br>
   <br>
   
-    <%= f.submit "Start!", class: "btn-large btn-inverse" %>
+    <%= f.submit "Start!", class: "btn-large btn-inverse", "data-ajax" => "false" %>
 
   </div>
   

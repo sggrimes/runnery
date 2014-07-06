@@ -1,9 +1,8 @@
+<%= render "shared/javascript_headers" %>
+
 <% provide(:title, 'All Done') %>
-<div class="container">
 
-  <% if @feed_items.any? %>
-
-    <h3> Done: All (
+    <h3 style="font-family: Courier New; font-style:italic; margin-left:0; margin-top:20px; padding:0;"> Done: All (
 
       <% if driver? %>
       <%= current_user.driver_all_done.count %>
@@ -13,31 +12,13 @@
       )
     </h3> 
 
-      <h4>Go to: <%= link_to ' Done Today', done_path, style: "color:black;" %></h4>
+      <h4 style="font-family: Courier New; font-style:italic; margin-left:0;">Go to: <%= link_to ' Done Today', done_path, style: "color:black", rel: :external %></h4>
 
-<table style="background: rgba(172,228,252,.5)">
-  <thead>
-    <tr>
-      <% if driver? %>
-
-      <th>Picked up:</th>
-
-      <% else %>
-
-       <th>Driver:</th>
-
-       <% end %>
-
-      <th>Dropped off:</th>
-      <th>When:</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @feed_items.each do |feed_item| %>
-      <tr>
-        <td><li class="dropdown">
+       <% @feed_items.each do |feed_item| %>
+ <div class="container pull-left" style="width:380px; background:rgba(172,228,252,.5);">
+  
+  <li>
+      <li class="dropdown">
 
         <a href="#" class="dropdown-toggle" 
             data-toggle="dropdown" style="color:black;">
@@ -50,18 +31,18 @@
 
         <% else %>
         <%= feed_item.driver_name %>
-        </a>
+        </ul>
         <ul class="dropdown-menu">
            <%= feed_item.driver_phone %>
         <% end %>
 
         </ul>
 
-      </li></td>
+      </li>
         
 
 
-        <td><li class="dropdown">
+        <li class="dropdown">
 
         <a href="#" class="dropdown-toggle" 
             data-toggle="dropdown" style="color:black;">
@@ -73,32 +54,46 @@
 
         </ul>
 
-      </li></td>
 
 
-        <td><%= time_ago_in_words(feed_item.created_at) %> ago.</td>
+      </li>
+
+
+        <%= time_ago_in_words(feed_item.created_at) %> ago.
+
+    
+
+        </li>
+        </div>
+
+        <br>
+    <br>
+    <br>
+    <br>
+
+        <div class:"container pull-left" style="width:380px;">
 
     <% if !feed_item.redeemed? %>
         <% if driver? %>
 
         <% if feed_item.receipt? %>
 
-            <td><%= form_for feed_item do |f| %>
+            <%= form_for feed_item do |f| %>
      
-
                <%= f.hidden_field :redeemed, :value => true %>
-                <%= f.submit "Receipt!", 
-                      class: "btn-small btn-warning", style: "margin-top:20px;" %></td> 
+               <%= f.submit "Receipt!", 
+                      class: "btn-small btn-warning", rel: :external %> 
         <% end %>
         <% end %>
       <% end %>
       <% end %>
-        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<%= will_paginate @feed_items %>
-<% end %>
+  
+  <% end %>
+   <%= will_paginate @feed_items %>
 </div>
+
+
+  
+
+

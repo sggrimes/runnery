@@ -53,6 +53,8 @@ end
 
 	gem 'geocoder'
 	gem 'gmaps4rails'
+	gem 'jquery_mobile_rails'
+	gem 'jquery-mobile-rails-assets'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

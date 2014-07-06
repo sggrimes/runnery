@@ -3,7 +3,7 @@
 <% if signed_in? && driver? %>
 <script type="text/javascript">
 
-   $(document).ready(function(){ navigator.geolocation.getCurrentPosition(
+   $(document).on('pageinit pageshow', 'div:jqmData(role="page"), div:jqmData(role="dialog")', function(){ navigator.geolocation.getCurrentPosition(
 
         function(pos){
           $("#latitude").val(pos.coords.latitude);
@@ -20,11 +20,16 @@
 <% if signed_in? %>
   <% if driver? %>
 
-    <div style="width:auto; margin:0 0 0 0px">
+    <div class="span5" style="margin:0 0 0 0px">
 
-      <h3 class="span2" style=" margin-top:15px;">Waiting:</h1>
+      <h3 class="span2" style="font-family: Courier New; font-style:italic; margin-left:0; margin-top:20px; padding:0;">Waiting:</h3>
 
-      <column class="span1 pull-right" style="margin-top:none; margin-right:15px;">
+      <%= link_to "P:", pickups_wait_path, class: "btn btn-inverse", style: "color:white; width:10px; margin-top:16px; margin-bottom:0;", rel: :external %>
+
+      <%= link_to "D:", dropoffs_wait_path, class: "btn btn-inverse", style: "color:white; width:10px; margin-top:16px; margin-bottom:0;", rel: :external %>
+
+      <div class=" span1 pull-right" style="margin-top:10px; margin-right:15px; margin-bottom:0px;">
+
 
        <%= form_for @location do |f| %>
 
@@ -34,11 +39,11 @@
           <%= f.hidden_field :lng, :id => "longitude" %>
 
           <%= f.submit "Locate", 
-                class: "btn btn-info" %>
+                class: "btn btn-info", style: "margin-top:5px;", id: "autolocate", rel: :external %>
                     
         <% end %>
 
-      </column>
+      </div>
 
       <br>
       <br>
@@ -50,13 +55,17 @@
     </div>
     <% else %>
 
-    <div style="margin: 0 0 0 0px; width:auto">
+    <div style="margin: 0 0 0 0px; width:380px">
 
-      <h3 style="margin-left:20px;">Post Delivery:</h3>
+      <h3 style="margin-left:0px;margin-top:20px">Post Delivery:</h3>
 
       <%= render 'shared/order_form'%>
 
-      <h3 style="margin-left:20px;">Waiting:</h3>
+      <h3 class="span2" style="font-family: Courier New; font-style:italic; margin:0;">Waiting:</h3>
+
+      <%= link_to "Map", dropoffs_wait_path, class: "btn btn-inverse", style: "color:white; margin-top:0; margin-bottom:0;", rel: :external %>
+
+      <br>
       <br>
       <%= render 'shared/feed' %>
          
