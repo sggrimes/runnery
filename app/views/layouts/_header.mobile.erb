@@ -1,27 +1,31 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
-	<div class="navbar-inner">
+	<div class="navbar-inner" style="height:20px;">
 
     	<% if signed_in? %>
 
-	    	<center class="wrapper" style="margin-top:5px;">
+	    	<center class="wrapper" style="margin-top:10px;">
 
 	    		
 
-					  <%= link_to "Waiting", root_path, style: "color:white;font-size:24px;", rel: :external %> 
-					  <span style="with:auto; color:white;font-size:24px;">|
+					  <%= link_to "Waiting", root_path, style: "color:white;font-size:18px;", rel: :external %> 
+					  <span style="with:auto; color:white;font-size:18px;">|
 					  </span>
-					  <%= link_to "Running", running_path, style: "color:white;font-size:24px;", rel: :external%> 
-					  <span style=" color:white;font-size:24px;">|
+					  <%= link_to "Running", running_path, style: "color:white;font-size:18px;", rel: :external%> 
+					  <span style=" color:white;font-size:18px;">|
 					  </span>
-					  <%= link_to "Done", done_path, style: "color:white; font-size:24px;", rel: :external %>
+					  <%= link_to "Done", done_path, style: "color:white; font-size:18px;", rel: :external %>
+
+					</center>
 			    
 			  	
 
-			</center>
+			
 
 		<% else %>
 
-				<%= link_to image_tag("hat.png", alt: "Delivery"), root_path, id: "image", style: "width:35px; height:30px; margin-top:10px; margin-left:50%; padding:0; -webkit-filter: invert(100%);", rel: :external %>
+
+				<%= link_to image_tag("hat.png", alt: "Delivery"), root_path, id: "image", style: "margin-left:49%; width:35px; height:30px; margin-top:10px; padding:0; -webkit-filter: invert(100%);", rel: :external %>
+
 
 		<% end %>
 	</div>

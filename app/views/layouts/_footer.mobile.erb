@@ -6,33 +6,29 @@
     <div class="wrapper" style="margin-bottom:5px;">
 
     <col style="margin: 0 0 0 0px;">
-      <%= link_to "Site Info", site_info_path, style: "color:white;", rel: :external %>
+      <%= link_to "Site Info", site_info_path, style: "color:white;font-size:11px;", rel: :external %>
     </col>    
 
     <% if signed_in? %>
 
-      <span style="color:white;">|</span>
+      <span style="color:white;font-size:11px;">|</span>
 
       <col>
-        <%= link_to "Edit Register", edit_user_path(current_user), style: "color:white;", rel: :external %>
+        <%= link_to "Edit Register", edit_user_path(current_user), style: "color:white;font-size:11px;", rel: :external %>
       </col>
       <% end %>
 
-      <span style="color:white;">|</span>
+      <span style="color:white;font-size:11px;">|</span>
 
       <col>
-        <% if mobile_device? %>
-          <a href="/?mobile=0", style="color:white;", rel="external">Desktop</a>
-        <% else %>
-          <a href="/?mobile=1", style="color:white;", rel="external">Mobile</a>
-        <% end %>
+        <a href="/?mobile=0", style="color:white;font-size:11px;", rel="external">Desktop</a>
       </col>
 
       <% if signed_in? %>
 
-        <span style="color:white;">|</span>
+        <span style="color:white;font-size:11px;">|</span>
 
-        <col><a href="<%= signout_path %>"  data-method="delete", style="color:white;", data-ajax="false" %>Sign Out</a></col>
+        <col><a href="<%= signout_path %>"  data-method="delete", style="color:white;font-size:11px;", data-ajax="false" %>Sign Out</a></col>
 
       <% end %>
     </div>

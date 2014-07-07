@@ -2,17 +2,20 @@
 
 <% provide(:title, 'Now Running') %>
     
-<div class="span5" style="margin:0 0 0 0px;">
+<div class="span5" style="margin:0 0 0 0px;width:380px;">
 
-  <h3 class="span2" style="font-family: Courier New; font-style:italic; margin-left:0; margin-top:20px; padding:0;"> Running: </h3>
 
   <% if signed_in? %>
   	<% if !driver? %>
+
+    <h3 class="span2" style="font-family: Courier New; font-style:italic; margin-left:0; margin-top:20px; padding:0;" id="restaurant"> Running: </h3>
 
 
   <%= link_to "Map", dropoffs_path, class: "btn btn-inverse", style: "color:white; margin-top:16px; margin-bottom:0;", rel: :external %>
 
   <% else %>
+
+  <h3 class="span2" style="font-family: Courier New; font-style:italic; margin-left:0; margin-top:20px; padding:0;"> Running: </h3>
 
   <%= link_to "P:", pickups_path, class: "btn btn-inverse", style: "color:white; width:10px; margin-top:16px; margin-bottom:0;", rel: :external %>
 

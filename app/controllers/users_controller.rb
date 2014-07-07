@@ -95,6 +95,38 @@ class UsersController < ApplicationController
     end
   end
 
+  def dropoffs_done
+     @user = User.find_by(params[:id])
+
+    if driver?
+      @feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 3).reorder("created_at DESC")
+    else
+      @feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 3).reorder("created_at DESC")
+    end
+
+    @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
+        marker.lat feed_item.latitude
+        marker.lng feed_item.longitude
+        marker.infowindow feed_item.address
+    end
+  end
+
+  def pickups_done
+     @user = User.find_by(params[:id])
+
+    if driver?
+      @feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 3).reorder("created_at DESC")
+    else
+      @feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 3).reorder("created_at DESC")
+    end
+
+    @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
+        marker.lat feed_item.origin_latitude
+        marker.lng feed_item.origin_longitude
+        marker.infowindow feed_item.origin_address
+    end
+  end
+
   def new
     @user = User.new
   end

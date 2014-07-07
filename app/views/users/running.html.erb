@@ -12,7 +12,18 @@
 
 <div class= "pull-right" style='width: 500px;'>
 
+	<% if signed_in? %>
+	<% if !driver? %>
+
+  <h3 id="restaurant">Dropoffs:</h3>
+
+  <% else %>
+
   <h3>Dropoffs:</h3>
+
+  <% end %>
+  <% end %>
+
   <div  id="map" style='width: 500px; height: 600px;'></div>
 
 </div>

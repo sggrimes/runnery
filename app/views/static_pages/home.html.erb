@@ -1,5 +1,3 @@
-<%= render "shared/javascript_headers" %>
-
 <% if signed_in? && driver? %>
 <script type="text/javascript">
 
@@ -8,7 +6,8 @@
         function(pos){
           $("#latitude").val(pos.coords.latitude);
           $("#longitude").val(pos.coords.longitude);
-                   
+
+                           
   });
  });   
 
@@ -34,7 +33,7 @@
           <%= f.hidden_field :lng, :id => "longitude" %>
 
           <%= f.submit "Locate", 
-                class: "btn btn-info", id: "autolocate", rel: :external %>
+                class: "btn btn-info", :id => "autolocate", :rel => "external" %>
                     
         <% end %>
 
@@ -60,7 +59,7 @@
 
     <% else %>
 
-    <div class="span4" style="margin: 0 0 0 0px;">
+    <div class="span5" style="margin: 0 0 0 0px; width:380px;" id="restaurant">
 
       <h3>Post Delivery:</h3>
 
@@ -69,7 +68,7 @@
       <%= render 'shared/order_form'%>
          
     </div>
-    <div class="span5 pull-right" style="width:360px; margin: 0 0 0 0px">
+    <div class="span5 pull-right" style="width:380px; margin: 0 0 0 0px">
 
       <h3>Waiting:</h3>
 
