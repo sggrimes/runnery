@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
     long = Location.where(:user_id => id).pluck(:lng)
 
     Order.where(:driver_id => nil)
-         .near([lat.shift, long.shift], 1)
+         .near([lat.shift, long.shift], 2)
 
   end
 
