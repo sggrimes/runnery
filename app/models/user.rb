@@ -47,12 +47,12 @@ class User < ActiveRecord::Base
 
 
   def driver_wait
+    
     lat = Location.where(:user_id => id).pluck(:lat)
     long = Location.where(:user_id => id).pluck(:lng)
-
-    Order.where(:driver_id => nil)
-         .near([lat.shift, long.shift], 2)
-
+    
+      Order.where(:driver_id => nil)
+           .near([lat.shift, long.shift], 2)
   end
 
   def driver_run

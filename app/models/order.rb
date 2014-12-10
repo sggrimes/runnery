@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
 	VALID_PHONE_REGEX = /(\d{10})/
 	validates :phone, presence: true, format: { with: VALID_PHONE_REGEX }
 	validates :surcharge, presence: true
-
+	
 	geocoded_by :address, latitude: :latitude, longitude: :longitude
 	geocoded_by :origin_address, latitude: :origin_latitude, longitude: :origin_longitude
 	
