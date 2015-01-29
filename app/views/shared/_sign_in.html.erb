@@ -3,7 +3,7 @@
     	<%= form_for(:session, url: sessions_path) do |f| %>
 
       	<%= f.label :phone %>
-      	<%= f.text_field :phone, placeholder: "8885551234" %>
+      	<%= f.phone_field :phone, placeholder: "8885551234" %>
 
       	<%= f.label :password %>
       	<%= f.password_field :password %>
