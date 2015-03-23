@@ -1,31 +1,14 @@
 <%= render "shared/javascript_headers" %>
 
 <% provide(:title, 'Done Today') %>
-    
-  <div class="span4" style="margin:0 0 0 0px; width:360px">
 
-    <h3>Done: Today</h3> 
+  <div  id="map" style="position:absolute; width:100%; height:100%;"></div>
 
-    <h4>Go to: <%= link_to 'All Done', all_done_path, style: "color:black;" %></h4>
 
-    <%= render 'shared/feed' %>
-    
-	</div>
-	<div class= "pull-right" style='width: 500px;'>
-
-    <% if signed_in? %>
-	<% if !driver? %>
-
-  <h3 id="restaurant">Dropoffs:</h3>
-
-  <% else %>
-
-  <h3>Dropoffs:</h3>
-
-  <% end %>
-  <% end %>
-    <div  id="map" style='width: 500px; height: 600px;'></div>
-
-  </div>
-
-<%= render 'shared/gmap_script' %>
+      <%= render 'shared/gmap_script' %>
+      
+      
+       <div style="position:absolute;z-index:1;top:150px;left:100px;width:350px;background: rgba(172,228,252,.9);box-shadow: 10px 10px 5px #888888">
+				             
+				             <%= render 'shared/feed'%>
+				            </div>

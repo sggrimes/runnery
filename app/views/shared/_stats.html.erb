@@ -1,5 +1,5 @@
 <% if !driver? %>
-<div class="stats">
+<div class="stats" style="margin-left:20px">
   <a href="/" style="color:black;", rel="external" >
     <div id="waiting" class="stat">
       <%= current_user.restaurant_wait.count %>
@@ -22,7 +22,7 @@
 
 <% else %>
 
-<div class="stats">
+<div class="stats" style="margin-left:20px">
   <a href="/" style="color:black;", rel="external">
     <div id="waiting" class="stat" >
       <%= current_user.driver_wait.count %>

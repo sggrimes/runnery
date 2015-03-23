@@ -1,92 +1,14 @@
-<% if signed_in? && driver? %>
-<script type="text/javascript">
-
-   $(document).ready(function(){ navigator.geolocation.getCurrentPosition(
-
-        function(pos){
-          $("#latitude").val(pos.coords.latitude);
-          $("#longitude").val(pos.coords.longitude);
-
-                           
-  });
- });   
-
-</script>
-<% end %>
-
 <% provide(:title, 'Home') %>
 
 <% if signed_in? %>
-  <% if driver? %>
 
-    <div class="span5 pull-left" style="margin:0 0 0 0px; width:380px">
+   <%= render "shared/javascript_headers" %>
 
-      <h3 class="span2" style="margin:0 0 0 0px">Waiting:</h3>
+  <div  id="map" style="position:absolute; width:100%; height:100%;"></div>
 
-      <column class="span1" style="margin-left:150px; margin-top:none">
-
-       <%= form_for @location do |f| %>
-
-        
-          <%= f.hidden_field :lat, :id => "latitude" %>
-       
-          <%= f.hidden_field :lng, :id => "longitude" %>
-
-          <%= f.submit "Locate", 
-                class: "btn btn-info", :id => "autolocate", :rel => "external" %>
-                    
-        <% end %>
-
-      </column>
-
-      <br>
-      <br>
-      <br>
-      <br>
-        
-        <%= render 'shared/feed' %>
-
-    </div>
-    <div class= "pull-right" style='width: 500px;'>
-
-      <h3>Pickups:</h3>
-
-      <div  id="map" style='width: 500px; height: 600px;'></div>
-
-    </div>
 
       <%= render 'shared/gmap_script' %>
-
-    <% else %>
-
-    <div class="span5" style="margin: 0 0 0 0px; width:380px;" id="restaurant">
-
-      <h3>Post Delivery:</h3>
-
-        <br>
-
-      <%= render 'shared/order_form'%>
-         
-    </div>
-    <div class="span5 pull-right" style="width:380px; margin: 0 0 0 0px">
-
-      <h3>Waiting:</h3>
-
-        <br>
-        
-      <%= render 'shared/feed' %>
-
-    </div>
-
-    <div class="bottom">
-
-      <div  id="map" style='width:100%; height: 250px;'></div>
-
-    </div>
-
-      <%= render 'shared/gmap_script' %>
-    
-  <% end %>
+      
   <% else %>
 
 	   <%= render 'shared/sign_in' %>

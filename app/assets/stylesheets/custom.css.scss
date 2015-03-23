@@ -28,17 +28,6 @@ html {
 
 body {
 
-    background-image:image-url('cityscape.jpg');
-	padding-top: 50px;
-
-	.ui-page{
-
-		background: #000;
-		background-image:url('cityscape.jpg');
-		background-size:cover; 
-
-	}
-
 #stat {
 	
 	color:black !important
@@ -94,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
 
 	&:hover {
 
-	background-color: rgba(172,228,252,.5);
+	background-color: none;
 
 	}
 

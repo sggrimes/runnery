@@ -1,78 +1,17 @@
-<% if signed_in? && driver? %>
-<script type="text/javascript">
-
-   $(document).on('pageinit pageshow', 'div:jqmData(role="page"), div:jqmData(role="dialog")', function(){ navigator.geolocation.getCurrentPosition(
-
-        function(pos){
-          $("#latitude").val(pos.coords.latitude);
-          $("#longitude").val(pos.coords.longitude);
-                   
-  });
- });   
-
-</script>
-<% end %>
-
 <% provide(:title, 'Home') %>
 
 <% if signed_in? %>
-  <% if driver? %>
 
-    <div class="span5" style="margin:0 0 0 0px; width:380px;">
+   <%= render "shared/javascript_headers" %>
 
-      <h3 class="span2" style="font-family: Courier New; font-style:italic; width:130px;margin-left:0; margin-top:20px; padding:0;">Waiting:</h3>
-
-      <%= link_to "P:", pickups_wait_path, class: "btn btn-inverse", style: "color:white; width:10px; margin-top:16px; margin-bottom:0;", rel: :external %>
-
-      <%= link_to "D:", dropoffs_wait_path, class: "btn btn-inverse", style: "color:white; width:10px; margin-top:16px; margin-bottom:0;", rel: :external %>
-
-      <div class=" span1" style="margin-top:10px; margin-right:25px; margin-bottom:0px; margin-left:0;">
+  <div  id="map" style="position:absolute; width:100%; height:100%;"></div>
 
 
-       <%= form_for @location do |f| %>
-
-        
-          <%= f.hidden_field :lat, :id => "latitude" %>
-       
-          <%= f.hidden_field :lng, :id => "longitude" %>
-
-          <%= f.submit "Locate", 
-                class: "btn btn-info", style: "margin-top:5px;", :id => "autolocate", :rel => "external" %>
-                    
-        <% end %>
-
-      </div>
-
-      <br>
-      <br>
-      <br>
-      <br>
-        
-        <%= render 'shared/feed' %>
-
-    </div>
-    <% else %>
-
-    <div class="span4" style="margin: 0 0 0 0px;" id="restaurant">
-
-      <h3 style="margin-left:0px;margin-top:20px">Post Delivery:</h3>
-
-      <%= render 'shared/order_form'%>
-
-      <h3 class="span2" style="font-family: Courier New; font-style:italic; margin:0;">Waiting:</h3>
-
-      <%= link_to "Map", dropoffs_wait_path, class: "btn btn-inverse", style: "color:white; margin-top:0; margin-bottom:0;", rel: :external %>
-
-      <br>
-      <br>
-      <%= render 'shared/feed' %>
-         
-    </div>
-
-    <% end %>
-    <% else %>
+      <%= render 'shared/gmap_script' %>
+      
+  <% else %>
 
 	   <%= render 'shared/sign_in' %>
 
-	<% end %>
+<% end %>
 

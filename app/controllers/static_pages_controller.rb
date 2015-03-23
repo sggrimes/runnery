@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
 
       @order  = current_user.orders.build
       @user = User.find_by(params[:id])
-      @feed_items = current_user.restaurant_wait.paginate(page: params[:page], :per_page => 3)
+      @feed_items = current_user.restaurant_wait
     
       if driver?
         if current_user.location.nil?
@@ -15,22 +15,24 @@ class StaticPagesController < ApplicationController
         @location.update_attributes(location_params)
         end
 
-        @feed_items = current_user.driver_wait.paginate(page: params[:page], :per_page => 3)
+        @feed_items = current_user.driver_wait
 
         @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
         
         marker.lat feed_item.origin_latitude
         marker.lng feed_item.origin_longitude
-        marker.infowindow feed_item.origin_address
-
+        marker.infowindow render_to_string(partial: '/shared/feed_item',
+          collection: @feed_items.select{|feed_items| feed_items.origin_address == feed_item.origin_address})
+    
         end
       else
-
+        
         @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
       
         marker.lat feed_item.latitude
         marker.lng feed_item.longitude
-        marker.infowindow feed_item.address
+        marker.infowindow render_to_string(partial: '/shared/feed_item',
+          collection: @feed_items.select{|feed_items| feed_items.address == feed_item.address})
 
         end
       end
@@ -41,13 +43,14 @@ class StaticPagesController < ApplicationController
     if signed_in? && driver?
       @order  = current_user.orders.build
       @user = User.find_by(params[:id])
-      @feed_items = current_user.driver_wait.paginate(page: params[:page], :per_page => 3)
+      @feed_items = current_user.driver_wait
 
         @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
       
           marker.lat feed_item.origin_latitude
           marker.lng feed_item.origin_longitude
-          marker.infowindow feed_item.origin_address
+          marker.infowindow render_to_string(partial: '/shared/feed_item',
+          collection: @feed_items.select{|feed_items| feed_items.origin_address == feed_item.origin_address})
 
         
       end
@@ -59,16 +62,17 @@ class StaticPagesController < ApplicationController
       @order  = current_user.orders.build
       @user = User.find_by(params[:id])
       if driver?
-       @feed_items = current_user.driver_wait.paginate(page: params[:page], :per_page => 3)
+       @feed_items = current_user.driver_wait
       else
-       @feed_items = current_user.restaurant_wait.paginate(page: params[:page], :per_page => 3)
+       @feed_items = current_user.restaurant_wait
       end
 
         @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
       
           marker.lat feed_item.latitude
           marker.lng feed_item.longitude
-          marker.infowindow feed_item.address
+          marker.infowindow render_to_string(partial: '/shared/feed_item',
+          collection: @feed_items.select{|feed_items| feed_items.address == feed_item.address})
 
         
       end

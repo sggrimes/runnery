@@ -17,18 +17,20 @@ class UsersController < ApplicationController
 
   def running
     @user = User.find_by(params[:id])
+    @order  = current_user.orders.build
 
     if driver?
-    @feed_items = current_user.driver_run.paginate(page: params[:page], :per_page => 3)
+    @feed_items = current_user.driver_run
     else
-    @feed_items = current_user.restaurant_run.paginate(page: params[:page], :per_page => 3)
+    @feed_items = current_user.restaurant_run
     end
     
     @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
       
         marker.lat feed_item.latitude
         marker.lng feed_item.longitude
-        marker.infowindow feed_item.address
+        marker.infowindow render_to_string(partial: '/shared/feed_item',
+          collection: @feed_items.select{|feed_items| feed_items.address == feed_item.address})
     end
   end
 
@@ -36,15 +38,16 @@ class UsersController < ApplicationController
     @user = User.find_by(params[:id])
 
     if driver?
-      @feed_items = current_user.driver_done.paginate(page: params[:page], :per_page => 3).reorder("created_at DESC")
+      @feed_items = current_user.driver_done.reorder("created_at DESC")
     else
-      @feed_items = current_user.restaurant_done.paginate(page: params[:page], :per_page => 3).reorder("created_at DESC")
+      @feed_items = current_user.restaurant_done.reorder("created_at DESC")
     end
 
     @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
         marker.lat feed_item.latitude
         marker.lng feed_item.longitude
-        marker.infowindow feed_item.address
+        marker.infowindow render_to_string(partial: '/shared/feed_item',
+          collection: @feed_items.select{|feed_items| feed_items.address == feed_item.address})
     end
   end
 
@@ -52,9 +55,9 @@ class UsersController < ApplicationController
   @user = User.find_by(params[:id])
 
    if driver?
-    @feed_items = current_user.driver_all_done.paginate(page: params[:page], :per_page => 10).reorder("created_at DESC")
+    @feed_items = current_user.driver_all_done.reorder("created_at DESC")
    else
-    @feed_items = current_user.restaurant_all_done.paginate(page: params[:page], :per_page => 10).reorder("created_at DESC")
+    @feed_items = current_user.restaurant_all_done.reorder("created_at DESC")
    end
    
   end
@@ -62,13 +65,14 @@ class UsersController < ApplicationController
   def pickups
     if signed_in? && driver?
       @user = User.find_by(params[:id])
-      @feed_items = current_user.driver_run.paginate(page: params[:page], :per_page => 3)
+      @feed_items = current_user.driver_run
 
         @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
       
           marker.lat feed_item.origin_latitude
           marker.lng feed_item.origin_longitude
-          marker.infowindow feed_item.origin_address
+          marker.infowindow render_to_string(partial: '/shared/feed_item',
+          collection: @feed_items.select{|feed_items| feed_items.origin_address == feed_item.origin_address})
 
         
       end
@@ -79,16 +83,17 @@ class UsersController < ApplicationController
     if signed_in?
       @user = User.find_by(params[:id])
       if driver?
-       @feed_items = current_user.driver_run.paginate(page: params[:page], :per_page => 3)
+       @feed_items = current_user.driver_run
       else
-       @feed_items = current_user.restaurant_run.paginate(page: params[:page], :per_page => 3)
+       @feed_items = current_user.restaurant_run
       end
 
         @hash = Gmaps4rails.build_markers(@feed_items) do |feed_item, marker|
       
           marker.lat feed_item.latitude
           marker.lng feed_item.longitude
-          marker.infowindow feed_item.address
+         marker.infowindow render_to_string(partial: '/shared/feed_item',
+          collection: @feed_items.select{|feed_items| feed_items.address == feed_item.address})
 
         
       end
