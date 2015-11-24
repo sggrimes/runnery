@@ -1,13 +1,12 @@
 <% provide(:title, 'Edit Register') %>
-<div class="container">
-<h3>Edit Register</h3>
+<div class="container" style="margin-top:150px">
+
 
 <%= form_for(@user) do |f| %>
 
-  <div style="width:160px;">
+  <div style="width:160px;height:60px">
     <%= render 'shared/error_messages', object: f.object %>
   	
-    <%= f.label :user_type %>
     <%= f.select :user_type, [["Driver", true],["Restaurant", false]] %>
 
     <br>
@@ -15,7 +14,8 @@
 
   </div>
 
-  <div class="span4" style="margin: 0 0 0 0px">
+  <div class="span4" style="background: rgba(172,228,252,.4);
+                            color:black; padding:10px 10px 10px 10px;margin:0 0 0 0px; box-shadow: 10px 10px 5px #434343">
     <%= f.label :name %>
     <%= f.text_field :name %>
 

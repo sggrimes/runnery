@@ -2,18 +2,30 @@
 
 <% if signed_in? %>
 
-   <%= render "shared/javascript_headers" %>
-
-  <div  id="map" style="position:absolute; width:100%; height:100%;"></div>
-
+  <%= render "shared/javascript_headers" %>
+  
+ <div id="map" style="position:absolute; width:100%; height:100%;"></div>
 
       <%= render 'shared/gmap_script' %>
-      
+    
   <% else %>
-
+  
+      <div id="sign-in" class="container">
+                   <div id="site-info" class="span4 pull-right" style="background: rgba(172,228,252,.4);
+                                              color:black; margin: 100px 100px 0 0px; box-shadow: 10px 10px 5px #434343">
+                      
+   				      <h4 style="margin:10px 10px 10px 10px">
+   				      Runnery is a restaurant delivery platform. 
+	   				   Restaurants submit deliveries to a pool of local,
+	   				   freelance drivers. Drivers choose the deliveries they want to run.</h4>
+	   				   
+	   				</div>
+                  
 	   <%= render 'shared/sign_in' %>
-
-<% end %>
+	   
+	   </div>
+	   
+  <% end %>
 
 			
 

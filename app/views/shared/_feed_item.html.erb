@@ -131,7 +131,10 @@
   <% end %>
 <% else %>
   <% if driver? && !feed_item.done %>
-    <% if feed_item.paid_card %>
+  
+  <button id="pickup" class="btn-small btn-warning" style="text-color:black;">NOT PICKED UP!!!</button>
+    
+   <% if feed_item.paid_card %>
 
 <box style="float:left; margin-right:50px">
 

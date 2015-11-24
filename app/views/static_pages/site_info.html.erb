@@ -1,16 +1,17 @@
 <% provide(:title, 'Info') %>
 
-	<h3>Runnery Info</h3>
-
 	<br>
 
-	<div class="span4" style="background: rgba(172,228,252,.5); 		color:black; margin: 0 0 0 0px;">
+		<div align="center">
+
+	<div class="container" style="background: rgba(172,228,252,.5);
+                              color:black; margin: 150px 0 0 0px; box-shadow: 10px 10px 5px #434343">
 
 		<% if !signed_in? %>
 
-			<p align="justify">
+			<p style="margin:10px 10px 10px 10px" align="justify">
 
-				Runnery is a food-delivery dispatch platform. Restaurants submit deliveries to a group of local, freelance drivers. Drivers choose deliveries by basic delivery information. 
+				Runnery is a food-delivery dispatch platform. Restaurants submit deliveries to a group of local, freelance drivers. Drivers choose the deliveries by basic delivery information. 
 
 			</p>
 
@@ -18,30 +19,30 @@
 
 		<% elsif driver? %>
 
-			<p align="justify">
+			<p style="margin:10px 10px 10px 10px" align="justify">
 
 				The driver works for their self, and uses Runnery as a way to get food-delivery jobs. Though the restaurant may give drivers money, drivers are paid by the customer.
 
 			</p>
 
-			<p align="justify">
+			<p style="margin:10px 10px 10px 10px" align="justify">
 
 				Each delivery has a surcharge. Surcharge reflects order size/cost, delivery distance, cost of gas, etc.
 
 			</p>
 
-			<p align="justify">
+			<p style="margin:10px 10px 10px 10px" align="justify">
 
 				Drivers are expected to pay for customers' cash orders up-front, minus surcharge, and be reembersed/tipped on delivery.
 
 			</p>
 
-			<p align="justify">
+			<p style="margin:10px 10px 10px 10px" align="justify">
 
 				For debited orders, surcharge is paid by the restaurant on pickup. Tip is either paid by the restuarant on pickup, or by the customer on delivery.
 			</p>
 			
-			<p align="justify">
+			<p style="margin:10px 10px 10px 10px" align="justify">
 
 				For credited tips, a receipt must be redeemed by the restaurant and tips paid after. Returning to the restaurant is not required for receipts with no tip. Surcharge is always paid on pickup.
 
@@ -71,42 +72,42 @@
 
 			<% else %>
 
-			<p align="justify">
+			<p style="margin:10px 10px 10px 10px" align="justify">
 
 	        	 Restaurants use Runnery to inform local drivers of their deliveries. The restaurant does not employ drivers, though the restaurant may give a driver money. Drivers are paid by the customer. 
 
 	        </p>
 
-			<p align="justify">
+			<p style="margin:10px 10px 10px 10px" align="justify">
 
 				Restaurants can submit 100 orders before having to subscribe to Runnery. Runnery cost $250 for every 1000 deliveries ($0.25/del). A restaurant's delivery cost can be balanced by the surcharge charged to the customer and surcharge paid to the driver. Subscription is paid via Paypal.
 
 			</p>
 
-	        <p align="justify">
+	        <p style="margin:10px 10px 10px 10px" align="justify">
 
 				Each delivery has a surcharge. Surcharge reflects order size/cost, delivery distance, cost of gas, etc.
 
 			</p>
 
-			<p align="justify">
+			<p style="margin:10px 10px 10px 10px" align="justify">
 
 				Drivers are expected to pay for cash orders up-front, minus surcharge, and be reembersed/tipped on delivery.
 
 			</p>
 
-			<p align="justify">
+			<p style="margin:10px 10px 10px 10px" align="justify">
 
 				For debited orders, surcharge is paid by the restaurant on pickup. Tip is either paid by the restuarant on pickup, or by the customer on delivery.
 			</p>
 			
-			<p align="justify">
+			<p style="margin:10px 10px 10px 10px" align="justify">
 
 				For credited tips, a receipt must be redeemed by the restaurant and tips paid after. Returning to the restaurant is not required for receipts with no tip. Surcharge is always paid on pickup.
 
 			</p>
 
-			<p align="justify">
+			<p style="margin:10px 10px 10px 10px" align="justify">
 
 				The restaurant is responsible for their orders. please use good judgement when handing delivery orders over to unfamiliar drivers.
 
@@ -119,3 +120,5 @@
 			</h3>
 
 	<% end %>
+	</div>
+	

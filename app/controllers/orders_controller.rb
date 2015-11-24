@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
     if @feed_item.update(order_params)
       if @feed_item.running && !@feed_item.done
       flash[:success] = "Order Running!"
-      redirect_to running_path 
+      redirect_to running_path
       end
       if !@feed_item.running
       flash[:error] = "Order stopped!"

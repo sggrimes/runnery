@@ -19,14 +19,28 @@ $grayMediumLight: #eaeaea;
 	font-style: italic;
 	font-family: "Courier New";
 	color:black;
+	
 }
 
 
 html {
-	overflow-y:scroll;
+	overflow-y:hidden;
 }
 
 body {
+	
+	background-image:image-url('cityscape.jpg');
+	padding-top: 50px;
+	
+	
+
+	.ui-page{
+
+		background: #000;
+		background-image:url('cityscape.jpg');
+		background-size:cover; 
+
+	}
 
 #stat {
 	
@@ -35,9 +49,10 @@ body {
 
 }
 
-section {
-	overflow: auto
-}
+.ui-page-active {
+		overflow: hidden !important;
+	}
+
 
 textarea{
 	resize: vertical;
@@ -88,7 +103,6 @@ h1, h2, h3, h4, h5, h6 {
 	}
 
 }
-	
 
 h1 {
 
