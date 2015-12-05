@@ -74,7 +74,6 @@ class StaticPagesController < ApplicationController
           marker.infowindow render_to_string(partial: '/shared/feed_item',
           collection: @feed_items.select{|feed_items| feed_items.address == feed_item.address})
 
-        
       end
     end
   end
