@@ -123,9 +123,14 @@
 		<%= render 'layouts/footer' %>
 	</div>
 	
-		<%= debug(params) if Rails.env.development? %>
-
+	
 	</div>
+	
+		<div style="position:absolute;bottom:0;width:100%;">
+	
+		<%= debug(params) if Rails.env.development? %>
+		
+		</div>
 	
 	</body>
 	
