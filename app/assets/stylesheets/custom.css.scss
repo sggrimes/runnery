@@ -31,10 +31,19 @@ body {
 	background-image:url("cityscape.jpg");
 	background-size:cover;
 	background-color:transparent;
+	
+.container {
+	
+	position:absolute; 
+	width:100%; 
+	height:100%;
+	
+}
 
 #stat {
 	
 	color:black !important
+	
 }
 
 }
